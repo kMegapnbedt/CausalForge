@@ -10,3 +10,9 @@
       <stop offset="0" stop-color="#ffd27a"/>
       <stop offset="0.45" stop-color="#ff8a3c"/>
       <stop offset="1" stop-color="#b23a10"/>
+    </radialGradient>
+    <linearGradient id="spark" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff8a3c" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#ffd27a" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ff8a3c" stop-opacity="0"/>
+    </linearGradient>
