@@ -4,3 +4,9 @@
   <defs>
     <linearGradient id="graphite" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#1b1d21"/>
+      <stop offset="1" stop-color="#0c0d10"/>
+    </linearGradient>
+    <radialGradient id="ember" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd27a"/>
+      <stop offset="0.45" stop-color="#ff8a3c"/>
+      <stop offset="1" stop-color="#b23a10"/>
