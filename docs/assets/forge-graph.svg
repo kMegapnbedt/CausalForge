@@ -16,3 +16,10 @@
       <stop offset="0.5" stop-color="#ffd27a" stop-opacity="0.9"/>
       <stop offset="1" stop-color="#ff8a3c" stop-opacity="0"/>
     </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="960" height="300" fill="url(#graphite)"/>
