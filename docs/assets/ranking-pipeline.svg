@@ -10,3 +10,7 @@
       <stop offset="0" stop-color="#4a2a12"/>
       <stop offset="0.5" stop-color="#ff8a3c"/>
       <stop offset="1" stop-color="#ffe0a3"/>
+    </linearGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
