@@ -1,0 +1,18 @@
+// causal_rank.cpp — CausalForge ranking core (portable C++17)
+//
+// A dependency-free root-cause ranking demo that mirrors the scoring model
+// implemented in the Python `causalforge` package. It reads a compact,
+// line-oriented incident description from stdin (or a file argument), builds
+// an in-memory causal graph, propagates temporal blame from failing sinks
+// back toward upstream sources, folds in local error evidence, and prints a
+// ranked list of suspect nodes together with a blast-radius estimate.
+//
+// The on-wire format is intentionally trivial so the engine stays free of any
+// third-party parser. Lines are one of:
+//
+//   N <id> <t_start> <t_end> <status> <error_weight>
+//   E <src> <dst> <coupling>
+//
+// where `status` is 0 (ok), 1 (degraded) or 2 (failed) and every numeric
+// field is whitespace separated. Blank lines and lines starting with '#' are
+// ignored. See engine/README or the top-level docs for the full grammar.
