@@ -53,3 +53,31 @@ Most tracing tools show you *what happened*. CausalForge answers a sharper
 question: **given everything that happened, which single event best explains
 the damage?** It does this without machine learning, without a training set,
 and without external services. The model is transparent enough to audit line by
+line, which matters when a ranking is going to influence a postmortem.
+
+Concretely, CausalForge gives you:
+
+- A **deterministic root-cause ranking** with a per-suspect rationale.
+- A **blast-radius estimate** for every node — how much of the incident each
+  candidate could explain.
+- A **reconstructed timeline** with an ASCII gantt strip.
+- **Markdown and JSON investigation exports** for humans and automation.
+- Two interchangeable engines (Python and C++) that produce identical rankings,
+  so you can embed the fast path wherever you need it.
+
+---
+
+## The forge metaphor
+
+CausalForge treats an incident like raw material passing through a forge. Cold
+events go in; heat (blame) is applied from the failures; the material is
+hammered across four stations; and a ranked, glowing suspect comes out the far
+end. The visual identity — ember orange on graphite — runs through every
+artefact the tool emits.
+
+![Ranking pipeline](docs/assets/ranking-pipeline.svg)
+
+The four stations map exactly onto the code:
+
+| Station    | Module                       | What it does                                   |
+| ---------- | ---------------------------- | ---------------------------------------------- |
