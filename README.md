@@ -25,3 +25,31 @@ same ranking.
 - [The forge metaphor](#the-forge-metaphor)
 - [Quickstart](#quickstart)
 - [The ranking pipeline](#the-ranking-pipeline)
+- [Architecture](#architecture)
+- [The scoring model in depth](#the-scoring-model-in-depth)
+- [Incident schema](#incident-schema)
+- [The compact event stream](#the-compact-event-stream)
+- [CLI reference and recipes](#cli-reference-and-recipes)
+- [The C++ ranking core](#the-c-ranking-core)
+- [Reports and artefacts](#reports-and-artefacts)
+- [Operations playbook](#operations-playbook)
+- [Extension seams](#extension-seams)
+- [Design principles](#design-principles)
+- [Repository layout](#repository-layout)
+- [Glossary](#glossary)
+
+---
+
+## Why CausalForge
+
+Distributed AI systems fail in *chains*. A stalled cache warmer slows a vector
+retriever, which slows an orchestrator, which times out a payment call, which
+surfaces as a failed checkout. The symptom (checkout failed) is loud and far
+from the cause (cache warmer stalled). Human responders instinctively walk the
+call graph backward in time — CausalForge encodes that instinct into a scoring
+model you can run in a fraction of a second.
+
+Most tracing tools show you *what happened*. CausalForge answers a sharper
+question: **given everything that happened, which single event best explains
+the damage?** It does this without machine learning, without a training set,
+and without external services. The model is transparent enough to audit line by
