@@ -81,3 +81,31 @@ The four stations map exactly onto the code:
 
 | Station    | Module                       | What it does                                   |
 | ---------- | ---------------------------- | ---------------------------------------------- |
+| Ingest     | `causalforge/ingest.py`      | Parse JSON or the compact stream into a graph  |
+| Propagate  | `causalforge/rank.py`        | Flow temporal blame backward from failures     |
+| Fuse       | `causalforge/rank.py`        | Combine blame, error evidence, blast radius    |
+| Rank       | `causalforge/report.py`      | Sort suspects and render investigation output  |
+
+---
+
+## Quickstart
+
+CausalForge requires only Python 3.11+. There is nothing to install; run it as a
+module from the repository root.
+
+```bash
+# Rank root causes for the bundled incident, print a Markdown investigation
+python -m causalforge analyze examples/incident_checkout.json
+
+# Emit machine-readable JSON instead
+python -m causalforge analyze examples/incident_checkout.json --format json
+
+# Reconstruct just the timeline
+python -m causalforge timeline examples/incident_checkout.json
+
+# How much of the incident could this node explain?
+python -m causalforge blast examples/incident_checkout.json --node cache.warmer
+
+# Structural sanity check of the graph
+python -m causalforge validate examples/incident_checkout.json
+```
