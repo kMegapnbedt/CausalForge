@@ -109,3 +109,31 @@ python -m causalforge blast examples/incident_checkout.json --node cache.warmer
 # Structural sanity check of the graph
 python -m causalforge validate examples/incident_checkout.json
 ```
+
+For the bundled `INC-2026-0417` incident, the primary suspect is
+`cache.warmer` — a job that failed early, carried strong local error evidence,
+and sits upstream of a five-node blast radius. That is the correct answer: the
+loud symptom is a failed checkout, but the fire started at the cache warmer.
+
+To build and run the C++ core against the same incident (expressed in the
+compact stream format):
+
+```bash
+g++ -std=c++17 -Wall -Wextra -pedantic -O2 -o causal_rank engine/causal_rank.cpp
+./causal_rank examples/incident_checkout.events
+```
+
+Both engines rank `cache.warmer` first with an identical score — that
+cross-check is the tool's core correctness invariant.
+
+---
+
+## The ranking pipeline
+
+An analysis run is a straight line through four passes. Each pass is pure: it
+takes the previous state and returns new state, with no hidden globals, so the
+whole pipeline is trivially reproducible.
+
+1. **Ingest.** The incident file is parsed into `Node` and `Edge` dataclasses
+   and wrapped in a `CausalGraph`, which builds forward and backward adjacency
+   indices. Structural anomalies (dangling edges, self-loops, out-of-range
