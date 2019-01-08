@@ -12,3 +12,11 @@ from __future__ import annotations
 import json
 from typing import Dict, List
 
+from .graph import CausalGraph
+from .model import Incident, Suspect
+from .timeline import build_timeline, timeline_text
+
+
+def render_json(incident: Incident, graph: CausalGraph,
+                suspects: List[Suspect]) -> str:
+    timeline = build_timeline(graph)
