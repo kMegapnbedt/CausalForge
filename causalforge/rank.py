@@ -20,3 +20,15 @@ Algorithm overview
    incident rank higher.
 
 The pass is deterministic: a fixed round count and stable sort mean the same
+incident always yields the same ranking.
+"""
+
+from __future__ import annotations
+
+import math
+from dataclasses import dataclass
+from typing import Dict, List
+
+from .blast import blast_radius
+from .graph import CausalGraph
+from .model import Suspect
