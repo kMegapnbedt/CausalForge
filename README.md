@@ -137,3 +137,31 @@ whole pipeline is trivially reproducible.
 1. **Ingest.** The incident file is parsed into `Node` and `Edge` dataclasses
    and wrapped in a `CausalGraph`, which builds forward and backward adjacency
    indices. Structural anomalies (dangling edges, self-loops, out-of-range
+   couplings) are collected as non-fatal warnings.
+
+2. **Seed.** Every node injects blame proportional to its status severity:
+   `failed = 1.0`, `degraded = 0.4`, `ok = 0.0`. This is the heat the forge
+   applies.
+
+3. **Propagate.** For a fixed number of damped rounds, blame flows from each
+   node to its *upstream* neighbours along incoming edges. Every transfer is
+   attenuated by (a) the edge coupling, (b) a temporal half-life kernel over the
+   causal time gap, and (c) a global damping factor. Because the round count is
+   fixed, the pass terminates without needing a convergence oracle and stays
+   deterministic.
+
+4. **Fuse and rank.** Each node's propagated blame is added to its local error
+   weight, then scaled by a blast-radius boost. Suspects are sorted by score
+   descending (ties broken by node id) and each gets a plain-language rationale.
+
+---
+
+## Architecture
+
+```
+                        ┌──────────────────────────────────────────┐
+   incident.json ─────► │  ingest.py                                 │
+   or .events           │    load_incident / parse_events            │
+                        │      → Incident{Node[], Edge[]}            │
+                        └───────────────────┬────────────────────────┘
+                                            │
