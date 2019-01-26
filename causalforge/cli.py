@@ -14,3 +14,19 @@ passed, in which case the compact line format is used.
 """
 
 from __future__ import annotations
+
+import argparse
+import sys
+from typing import List, Optional
+
+from .graph import CausalGraph
+from .blast import blast_radius, reachable_set, weighted_blast
+from .ingest import load_incident, parse_events, to_events
+from .rank import RankConfig, rank_incident
+from .report import render_json, render_markdown
+from .timeline import build_timeline, timeline_text
+
+
+def _read_incident(args) -> "Incident":  # noqa: F821 - forward ref for docs
+    if args.events:
+        with open(args.input, "r", encoding="utf-8") as fh:
