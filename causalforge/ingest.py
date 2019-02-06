@@ -22,3 +22,11 @@ def load_incident(path: str) -> Incident:
         raw = json.load(fh)
     return incident_from_dict(raw)
 
+
+def incident_from_dict(raw: dict) -> Incident:
+    nodes = [
+        Node(
+            id=str(n["id"]),
+            kind=str(n.get("kind", "event")),
+            t_start=float(n.get("t_start", 0.0)),
+            t_end=float(n.get("t_end", n.get("t_start", 0.0))),
