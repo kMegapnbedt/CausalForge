@@ -165,3 +165,31 @@ whole pipeline is trivially reproducible.
                         │      → Incident{Node[], Edge[]}            │
                         └───────────────────┬────────────────────────┘
                                             │
+                                            ▼
+                        ┌──────────────────────────────────────────┐
+                        │  graph.py — CausalGraph                    │
+                        │    out_adj / in_adj / topo / validate      │
+                        └───────────────────┬────────────────────────┘
+                                            │
+                     ┌──────────────────────┼───────────────────────┐
+                     ▼                       ▼                       ▼
+          ┌────────────────┐      ┌──────────────────┐    ┌──────────────────┐
+          │ rank.py         │      │ blast.py          │   │ timeline.py       │
+          │  _propagate     │◄────►│  reachable_set    │   │  build_timeline   │
+          │  _rationale     │      │  weighted_blast   │   │  timeline_text    │
+          │  rank_incident  │      └──────────────────┘    └──────────────────┘
+          └───────┬─────────┘
+                  │  Suspect[]
+                  ▼
+          ┌────────────────┐          ┌────────────────────────────────────┐
+          │ report.py       │          │ engine/causal_rank.cpp (C++17)      │
+          │  render_markdown│          │  independent, identical scoring     │
+          │  render_json    │          │  reads the compact event stream     │
+          └───────┬─────────┘          └────────────────────────────────────┘
+                  │
+                  ▼
+        Markdown / JSON investigation
+```
+
+The Python package is the reference implementation and the source of truth for
+the schema. The C++ core is a self-contained mirror of the scoring math,
