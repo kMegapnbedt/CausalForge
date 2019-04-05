@@ -32,3 +32,14 @@ from typing import Dict, List
 from .blast import blast_radius
 from .graph import CausalGraph
 from .model import Suspect
+
+
+@dataclass
+class RankConfig:
+    """Tunable coefficients for the ranking pass."""
+
+    rounds: int = 6
+    half_life: float = 5.0
+    damping: float = 0.55
+    radius_gain: float = 0.25
+    late_floor: float = 0.15
