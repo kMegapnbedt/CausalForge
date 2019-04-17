@@ -1,1 +1,2 @@
 # CausalForge compact incident stream — INC-2026-0417
+# N <id> <t_start> <t_end> <status:0ok/1deg/2fail> <error_weight>
