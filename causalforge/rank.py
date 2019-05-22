@@ -43,3 +43,15 @@ class RankConfig:
     damping: float = 0.55
     radius_gain: float = 0.25
     late_floor: float = 0.15
+
+    def validate(self) -> None:
+        if self.rounds < 1:
+            raise ValueError("rounds must be >= 1")
+        if self.half_life <= 0:
+            raise ValueError("half_life must be > 0")
+        if not (0.0 < self.damping <= 1.0):
+            raise ValueError("damping must be in (0, 1]")
+
+
+def _temporal_kernel(upstream_end: float, downstream_start: float,
+                     half_life: float, late_floor: float) -> float:
