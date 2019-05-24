@@ -30,3 +30,19 @@ from .timeline import build_timeline, timeline_text
 def _read_incident(args) -> "Incident":  # noqa: F821 - forward ref for docs
     if args.events:
         with open(args.input, "r", encoding="utf-8") as fh:
+            return parse_events(fh.read())
+    return load_incident(args.input)
+
+
+def _cmd_analyze(args) -> int:
+    incident = _read_incident(args)
+    graph = CausalGraph(incident)
+    cfg = RankConfig(
+        rounds=args.rounds,
+        half_life=args.half_life,
+        damping=args.damping,
+        radius_gain=args.radius_gain,
+    )
+    suspects = rank_incident(graph, cfg)
+    if args.format == "json":
+        out = render_json(incident, graph, suspects)
