@@ -4,3 +4,5 @@
   "origin_ts": "2026-04-17T09:14:22Z",
   "summary": "Users saw failed checkouts. The payment service returned 5xx, which traced upstream through the order orchestrator to a slow vector retriever whose cache warmer had stalled.",
   "nodes": [
+    { "id": "cache.warmer",      "kind": "job",       "t_start": 0.0,  "t_end": 8.5,  "status": "failed",   "error_weight": 1.4, "labels": {"team": "platform"} },
+    { "id": "vector.retriever",  "kind": "service",   "t_start": 8.0,  "t_end": 14.2, "status": "degraded", "error_weight": 0.6, "labels": {"team": "search"} },
