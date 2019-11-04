@@ -9,3 +9,9 @@ economical explanation and boosts its ranking score.
 from __future__ import annotations
 
 from typing import Set
+
+from .graph import CausalGraph
+
+
+def reachable_set(graph: CausalGraph, start: str) -> Set[str]:
+    """Return every node reachable downstream from ``start`` (excluding itself).
