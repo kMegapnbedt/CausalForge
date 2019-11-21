@@ -29,3 +29,9 @@
     <line x1="0" y1="150" x2="960" y2="150"/>
     <line x1="0" y1="225" x2="960" y2="225"/>
   </g>
+
+  <!-- edges -->
+  <g stroke="#3a3f47" stroke-width="3" fill="none">
+    <path d="M150,150 L340,90"/>
+    <path d="M150,150 L340,210"/>
+    <path d="M340,90 L540,150"/>
