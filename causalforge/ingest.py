@@ -30,3 +30,11 @@ def incident_from_dict(raw: dict) -> Incident:
             kind=str(n.get("kind", "event")),
             t_start=float(n.get("t_start", 0.0)),
             t_end=float(n.get("t_end", n.get("t_start", 0.0))),
+            status=str(n.get("status", "ok")),
+            error_weight=float(n.get("error_weight", 0.0)),
+            labels={str(k): str(v) for k, v in n.get("labels", {}).items()},
+        )
+        for n in raw.get("nodes", [])
+    ]
+    edges = [
+        Edge(
