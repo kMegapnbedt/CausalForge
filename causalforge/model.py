@@ -15,3 +15,9 @@ STATUS_OK = "ok"
 STATUS_DEGRADED = "degraded"
 STATUS_FAILED = "failed"
 
+_STATUS_SEVERITY = {
+    STATUS_OK: 0.0,
+    STATUS_DEGRADED: 0.4,
+    STATUS_FAILED: 1.0,
+}
+
