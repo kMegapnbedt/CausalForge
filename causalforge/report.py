@@ -20,3 +20,10 @@ from .timeline import build_timeline, timeline_text
 def render_json(incident: Incident, graph: CausalGraph,
                 suspects: List[Suspect]) -> str:
     timeline = build_timeline(graph)
+    payload = {
+        "incident": {
+            "id": incident.id,
+            "title": incident.title,
+            "origin_ts": incident.origin_ts,
+            "summary": incident.summary,
+            "node_count": graph.order(),
