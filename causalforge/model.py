@@ -21,3 +21,8 @@ _STATUS_SEVERITY = {
     STATUS_FAILED: 1.0,
 }
 
+
+@dataclass
+class Node:
+    """A single execution event participating in an incident.
+
