@@ -13,3 +13,6 @@ from typing import List
 from .graph import CausalGraph
 
 
+@dataclass
+class TimelineEntry:
+    node_id: str
