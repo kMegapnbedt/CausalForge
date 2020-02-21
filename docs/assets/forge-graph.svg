@@ -35,3 +35,10 @@
     <path d="M150,150 L340,90"/>
     <path d="M150,150 L340,210"/>
     <path d="M340,90 L540,150"/>
+    <path d="M340,210 L540,150"/>
+    <path d="M540,150 L740,110"/>
+    <path d="M540,150 L740,200"/>
+  </g>
+
+  <!-- travelling blame sparks flowing backward (right to left) -->
+  <g stroke="url(#spark)" stroke-width="4" fill="none" filter="url(#glow)">
