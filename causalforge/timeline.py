@@ -16,3 +16,6 @@ from .graph import CausalGraph
 @dataclass
 class TimelineEntry:
     node_id: str
+    t_start: float
+    t_end: float
+    status: str
