@@ -15,3 +15,9 @@ from .graph import CausalGraph
 
 def reachable_set(graph: CausalGraph, start: str) -> Set[str]:
     """Return every node reachable downstream from ``start`` (excluding itself).
+
+    Uses iterative depth-first traversal with a visited guard so cyclic graphs
+    terminate.
+    """
+    if not graph.has_node(start):
+        return set()
