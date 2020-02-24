@@ -42,3 +42,9 @@
 
   <!-- travelling blame sparks flowing backward (right to left) -->
   <g stroke="url(#spark)" stroke-width="4" fill="none" filter="url(#glow)">
+    <path d="M740,110 L540,150" stroke-dasharray="24 220">
+      <animate attributeName="stroke-dashoffset" from="0" to="-244" dur="2.6s" repeatCount="indefinite"/>
+    </path>
+    <path d="M540,150 L340,90" stroke-dasharray="24 220">
+      <animate attributeName="stroke-dashoffset" from="0" to="-244" dur="2.6s" begin="0.5s" repeatCount="indefinite"/>
+    </path>
