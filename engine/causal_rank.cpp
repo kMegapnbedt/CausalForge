@@ -16,3 +16,22 @@
 // where `status` is 0 (ok), 1 (degraded) or 2 (failed) and every numeric
 // field is whitespace separated. Blank lines and lines starting with '#' are
 // ignored. See engine/README or the top-level docs for the full grammar.
+//
+// Build:  g++ -std=c++17 -Wall -Wextra -pedantic -O2 -o causal_rank engine/causal_rank.cpp
+// Syntax: g++ -std=c++17 -Wall -Wextra -pedantic -fsyntax-only engine/causal_rank.cpp
+
+#include <algorithm>
+#include <cmath>
+#include <cstdint>
+#include <fstream>
+#include <iostream>
+#include <limits>
+#include <map>
+#include <sstream>
+#include <string>
+#include <unordered_map>
+#include <vector>
+
+namespace causalforge {
+
+// A single execution event / node in the causal graph.
