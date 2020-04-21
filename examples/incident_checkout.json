@@ -7,3 +7,5 @@
     { "id": "cache.warmer",      "kind": "job",       "t_start": 0.0,  "t_end": 8.5,  "status": "failed",   "error_weight": 1.4, "labels": {"team": "platform"} },
     { "id": "vector.retriever",  "kind": "service",   "t_start": 8.0,  "t_end": 14.2, "status": "degraded", "error_weight": 0.6, "labels": {"team": "search"} },
     { "id": "embedding.model",   "kind": "model",     "t_start": 8.2,  "t_end": 12.0, "status": "ok",       "error_weight": 0.0, "labels": {"team": "ml"} },
+    { "id": "order.orchestrator","kind": "service",   "t_start": 13.0, "t_end": 18.5, "status": "degraded", "error_weight": 0.3, "labels": {"team": "checkout"} },
+    { "id": "payment.service",   "kind": "service",   "t_start": 17.0, "t_end": 21.0, "status": "failed",   "error_weight": 0.9, "labels": {"team": "payments"} },
