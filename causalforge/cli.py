@@ -46,3 +46,20 @@ def _cmd_analyze(args) -> int:
     suspects = rank_incident(graph, cfg)
     if args.format == "json":
         out = render_json(incident, graph, suspects)
+    else:
+        out = render_markdown(incident, graph, suspects)
+    _emit(out, args.output)
+    return 0
+
+
+def _cmd_timeline(args) -> int:
+    incident = _read_incident(args)
+    graph = CausalGraph(incident)
+    out = timeline_text(build_timeline(graph))
+    _emit(out + "\n", args.output)
+    return 0
+
+
+def _cmd_blast(args) -> int:
+    incident = _read_incident(args)
+    graph = CausalGraph(incident)
