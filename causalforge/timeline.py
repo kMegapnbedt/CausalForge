@@ -19,3 +19,6 @@ class TimelineEntry:
     t_start: float
     t_end: float
     status: str
+    kind: str
+    lane: str  # ascii gantt strip for this event
+
