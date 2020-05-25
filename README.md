@@ -193,3 +193,31 @@ whole pipeline is trivially reproducible.
 
 The Python package is the reference implementation and the source of truth for
 the schema. The C++ core is a self-contained mirror of the scoring math,
+designed to be embedded in latency-sensitive contexts or invoked from a shell
+pipeline. Keeping the two in lockstep is intentional: the `.events` fixture is
+the shared contract, and both engines must rank it identically.
+
+---
+
+## The scoring model in depth
+
+The final score for a node is:
+
+```
+score(n) = ( blame(n) + error_weight(n) ) * radius_factor(n)
+```
+
+### Temporal blame propagation
+
+Blame starts at the failing sinks and flows backward. During a propagation
+round, a node `n` with current blame `b` sends to each upstream neighbour `u`
+(connected by edge `u → n` with coupling `c`):
+
+```
+transfer = b * clamp(c, 0, 1) * kernel(u.t_end, n.t_start) * damping
+```
+
+where the temporal kernel is an exponential half-life decay over the causal
+gap `dt = n.t_start - u.t_end`:
+
+```
