@@ -12,3 +12,6 @@ an incident. The scoring model blends three signals:
 * **Blast radius** — nodes that can influence a larger downstream subgraph are
   boosted, because a fault there explains more of the observed damage.
 
+The package is dependency-free and relies only on the Python standard library.
+It mirrors the ranking core implemented in ``engine/causal_rank.cpp``.
+"""
