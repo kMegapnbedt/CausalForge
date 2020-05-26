@@ -221,3 +221,31 @@ where the temporal kernel is an exponential half-life decay over the causal
 gap `dt = n.t_start - u.t_end`:
 
 ```
+kernel(u.t_end, n.t_start) = exp(-ln(2) * dt / half_life)      if dt >= 0
+                           = late_floor                        if dt <  0
+```
+
+The intuition: if an upstream event finished *just before* a downstream failure
+started, the kernel is near `1.0` — strong causal support. If it finished a long
+time before, the kernel decays toward zero. If it finished *after* the
+downstream event even started, it is an implausible cause and receives only a
+small `late_floor` weight (default `0.15`).
+
+Damping (`0.55` by default) shrinks each hop so blame cannot amplify without
+bound as it travels through long chains. The pass runs a fixed number of
+`rounds` (default `6`), which is comfortably more than the depth of typical
+incident graphs.
+
+### Error-evidence fusion
+
+Propagated blame captures *structural* suspicion — "downstream things failed and
+you are upstream of them." But a node may also carry *direct* evidence:
+exception counts, log severity, retry storms, elevated 5xx rates. That is the
+`error_weight`, and it is added to the propagated blame before scaling. A node
+with both high blame and high local evidence is the strongest possible suspect.
+
+### Blast-radius boost
+
+Given two nodes with equal fused suspicion, the one that can influence more of
+the graph is the more *economical* explanation — it accounts for more of the
+observed damage with a single cause. CausalForge boosts by:
