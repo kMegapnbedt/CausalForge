@@ -38,3 +38,11 @@ def incident_from_dict(raw: dict) -> Incident:
     ]
     edges = [
         Edge(
+            src=str(e["src"]),
+            dst=str(e["dst"]),
+            coupling=float(e.get("coupling", 1.0)),
+            relation=str(e.get("relation", "calls")),
+        )
+        for e in raw.get("edges", [])
+    ]
+    return Incident(
