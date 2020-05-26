@@ -27,3 +27,11 @@ def render_json(incident: Incident, graph: CausalGraph,
             "origin_ts": incident.origin_ts,
             "summary": incident.summary,
             "node_count": graph.order(),
+            "edge_count": graph.size(),
+        },
+        "primary_suspect": suspects[0].node_id if suspects else None,
+        "suspects": [s.to_dict() for s in suspects],
+        "timeline": [
+            {
+                "node_id": e.node_id,
+                "t_start": e.t_start,
