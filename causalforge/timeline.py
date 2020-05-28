@@ -22,3 +22,6 @@ class TimelineEntry:
     kind: str
     lane: str  # ascii gantt strip for this event
 
+
+def _lane(t_start: float, t_end: float, span_start: float, span_end: float,
+          width: int = 40) -> str:
