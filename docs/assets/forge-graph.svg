@@ -54,3 +54,10 @@
   </g>
 
   <!-- nodes -->
+  <g font-family="Consolas,Menlo,monospace" font-size="12" fill="#c9ced6" text-anchor="middle">
+    <g>
+      <circle cx="150" cy="150" r="20" fill="url(#ember)" filter="url(#glow)">
+        <animate attributeName="r" values="20;24;20" dur="2.6s" repeatCount="indefinite"/>
+      </circle>
+      <text x="150" y="192">cache.warmer</text>
+    </g>
