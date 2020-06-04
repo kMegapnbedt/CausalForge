@@ -46,3 +46,11 @@ def incident_from_dict(raw: dict) -> Incident:
         for e in raw.get("edges", [])
     ]
     return Incident(
+        id=str(raw.get("id", "incident")),
+        title=str(raw.get("title", "Untitled incident")),
+        nodes=nodes,
+        edges=edges,
+        origin_ts=raw.get("origin_ts"),
+        summary=str(raw.get("summary", "")),
+    )
+
