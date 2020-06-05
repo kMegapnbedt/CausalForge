@@ -35,3 +35,10 @@ def render_json(incident: Incident, graph: CausalGraph,
             {
                 "node_id": e.node_id,
                 "t_start": e.t_start,
+                "t_end": e.t_end,
+                "status": e.status,
+                "kind": e.kind,
+            }
+            for e in timeline
+        ],
+        "warnings": graph.validate(),
