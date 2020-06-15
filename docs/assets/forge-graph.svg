@@ -61,3 +61,9 @@
       </circle>
       <text x="150" y="192">cache.warmer</text>
     </g>
+    <circle cx="340" cy="90" r="14" fill="#2b2f36" stroke="#ff8a3c" stroke-width="2"/>
+    <text x="340" y="66">retriever</text>
+    <circle cx="340" cy="210" r="14" fill="#2b2f36" stroke="#5b6068" stroke-width="2"/>
+    <text x="340" y="240">embedding</text>
+    <circle cx="540" cy="150" r="15" fill="#2b2f36" stroke="#ff8a3c" stroke-width="2"/>
+    <text x="540" y="126">orchestrator</text>
