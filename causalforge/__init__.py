@@ -15,3 +15,6 @@ an incident. The scoring model blends three signals:
 The package is dependency-free and relies only on the Python standard library.
 It mirrors the ranking core implemented in ``engine/causal_rank.cpp``.
 """
+
+from __future__ import annotations
+
