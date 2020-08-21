@@ -35,3 +35,22 @@
 namespace causalforge {
 
 // A single execution event / node in the causal graph.
+struct Node {
+    std::string id;
+    double t_start = 0.0;
+    double t_end = 0.0;
+    int status = 0;          // 0 ok, 1 degraded, 2 failed
+    double error_weight = 0.0;
+    // Derived / accumulated fields.
+    double blame = 0.0;      // propagated temporal blame
+    double score = 0.0;      // final ranking score
+    int reachable = 0;       // downstream reachable count (blast radius)
+};
+
+// A directed causal dependency edge: src influences dst.
+struct Edge {
+    std::string src;
+    std::string dst;
+    double coupling = 1.0;   // 0..1 strength of causal coupling
+};
+
