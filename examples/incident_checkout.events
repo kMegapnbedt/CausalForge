@@ -1,3 +1,4 @@
 # CausalForge compact incident stream — INC-2026-0417
 # N <id> <t_start> <t_end> <status:0ok/1deg/2fail> <error_weight>
 N cache.warmer       0.0   8.5   2  1.4
+N vector.retriever   8.0   14.2  1  0.6
