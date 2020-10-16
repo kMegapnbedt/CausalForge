@@ -9,3 +9,5 @@
     { "id": "embedding.model",   "kind": "model",     "t_start": 8.2,  "t_end": 12.0, "status": "ok",       "error_weight": 0.0, "labels": {"team": "ml"} },
     { "id": "order.orchestrator","kind": "service",   "t_start": 13.0, "t_end": 18.5, "status": "degraded", "error_weight": 0.3, "labels": {"team": "checkout"} },
     { "id": "payment.service",   "kind": "service",   "t_start": 17.0, "t_end": 21.0, "status": "failed",   "error_weight": 0.9, "labels": {"team": "payments"} },
+    { "id": "notification.queue","kind": "queue",     "t_start": 18.0, "t_end": 19.0, "status": "ok",       "error_weight": 0.0, "labels": {"team": "platform"} },
+    { "id": "checkout.frontend", "kind": "service",   "t_start": 20.0, "t_end": 22.5, "status": "failed",   "error_weight": 0.5, "labels": {"team": "web"} }
