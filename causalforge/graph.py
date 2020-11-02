@@ -16,3 +16,12 @@ class CausalGraph:
     """A directed graph view over an incident.
 
     Cycles are permitted (retry loops, mutual timeouts). All traversals guard
+    against them with visited sets so the structure never loops forever.
+    """
+
+    def __init__(self, incident: Incident) -> None:
+        self.incident = incident
+        self._nodes: Dict[str, Node] = incident.node_index()
+        self._out: Dict[str, List[Edge]] = {}
+        self._in: Dict[str, List[Edge]] = {}
+        for edge in incident.edges:
