@@ -249,3 +249,30 @@ with both high blame and high local evidence is the strongest possible suspect.
 Given two nodes with equal fused suspicion, the one that can influence more of
 the graph is the more *economical* explanation — it accounts for more of the
 observed damage with a single cause. CausalForge boosts by:
+
+```
+radius_factor(n) = 1 + ln(1 + blast_radius(n)) * radius_gain
+```
+
+The logarithm keeps the boost gentle: doubling the reachable set does not double
+the score. `radius_gain` defaults to `0.25`.
+
+### Determinism
+
+Every coefficient is fixed, the round count is fixed, and the final sort breaks
+ties by node id. Run the same incident a thousand times and you get the same
+ranking a thousand times. This is a deliberate design choice — a root-cause tool
+that gives different answers on reruns is worse than no tool at all.
+
+---
+
+## Incident schema
+
+The canonical input is a JSON object. See `docs/schema.md` for the field-by-field
+reference. In brief:
+
+```json
+{
+  "id": "INC-2026-0417",
+  "title": "Checkout completion errors after retriever timeout",
+  "origin_ts": "2026-04-17T09:14:22Z",
