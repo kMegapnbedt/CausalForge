@@ -25,3 +25,12 @@ class CausalGraph:
         self._out: Dict[str, List[Edge]] = {}
         self._in: Dict[str, List[Edge]] = {}
         for edge in incident.edges:
+            self._out.setdefault(edge.src, []).append(edge)
+            self._in.setdefault(edge.dst, []).append(edge)
+
+    # -- basic accessors -------------------------------------------------
+    def nodes(self) -> Iterable[Node]:
+        return self._nodes.values()
+
+    def node(self, node_id: str) -> Node:
+        return self._nodes[node_id]
