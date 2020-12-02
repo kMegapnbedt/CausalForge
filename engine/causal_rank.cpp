@@ -54,3 +54,22 @@ struct Edge {
     double coupling = 1.0;   // 0..1 strength of causal coupling
 };
 
+// The graph plus fast lookup indices.
+class CausalGraph {
+public:
+    std::vector<Node> nodes;
+    std::vector<Edge> edges;
+    std::unordered_map<std::string, std::size_t> index;
+
+    void add_node(const Node& n) {
+        index[n.id] = nodes.size();
+        nodes.push_back(n);
+    }
+
+    void add_edge(const Edge& e) { edges.push_back(e); }
+
+    Node* find(const std::string& id) {
+        auto it = index.find(id);
+        if (it == index.end()) return nullptr;
+        return &nodes[it->second];
+    }
