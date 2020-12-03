@@ -42,3 +42,11 @@ def render_json(incident: Incident, graph: CausalGraph,
             for e in timeline
         ],
         "warnings": graph.validate(),
+    }
+    return json.dumps(payload, indent=2)
+
+
+def render_markdown(incident: Incident, graph: CausalGraph,
+                    suspects: List[Suspect]) -> str:
+    lines: List[str] = []
+    lines.append(f"# Investigation: {incident.title}")
