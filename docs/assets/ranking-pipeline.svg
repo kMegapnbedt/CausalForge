@@ -26,3 +26,7 @@
   </rect>
 
   <!-- four forge stations -->
+  <g font-family="Segoe UI,Helvetica,Arial,sans-serif" text-anchor="middle">
+    <g>
+      <rect x="70" y="90" width="170" height="90" rx="10" fill="#1c1f24" stroke="#ff8a3c" stroke-width="2"/>
+      <text x="155" y="125" fill="#ffd27a" font-size="18" font-weight="700">Ingest</text>
