@@ -50,3 +50,10 @@ def render_markdown(incident: Incident, graph: CausalGraph,
                     suspects: List[Suspect]) -> str:
     lines: List[str] = []
     lines.append(f"# Investigation: {incident.title}")
+    lines.append("")
+    lines.append(f"- **Incident ID:** `{incident.id}`")
+    if incident.origin_ts:
+        lines.append(f"- **Origin:** {incident.origin_ts}")
+    lines.append(f"- **Nodes:** {graph.order()}  **Edges:** {graph.size()}")
+    if suspects:
+        lines.append(f"- **Primary suspect:** `{suspects[0].node_id}` "
