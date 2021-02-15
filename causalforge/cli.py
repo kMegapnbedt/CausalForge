@@ -63,3 +63,19 @@ def _cmd_timeline(args) -> int:
 def _cmd_blast(args) -> int:
     incident = _read_incident(args)
     graph = CausalGraph(incident)
+    if not graph.has_node(args.node):
+        print(f"error: unknown node '{args.node}'", file=sys.stderr)
+        return 1
+    radius = blast_radius(graph, args.node)
+    weighted = weighted_blast(graph, args.node)
+    downstream = sorted(reachable_set(graph, args.node))
+    print(f"node: {args.node}")
+    print(f"blast_radius: {radius}")
+    print(f"weighted_blast: {weighted:.3f}")
+    print("downstream:")
+    for d in downstream:
+        print(f"  - {d}")
+    return 0
+
+
+def _cmd_convert(args) -> int:
