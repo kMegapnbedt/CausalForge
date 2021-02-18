@@ -21,3 +21,9 @@ def reachable_set(graph: CausalGraph, start: str) -> Set[str]:
     """
     if not graph.has_node(start):
         return set()
+    seen: Set[str] = set()
+    stack = [start]
+    visited_start = False
+    while stack:
+        cur = stack.pop()
+        if cur in seen:
