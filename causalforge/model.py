@@ -26,3 +26,9 @@ _STATUS_SEVERITY = {
 class Node:
     """A single execution event participating in an incident.
 
+    Attributes
+    ----------
+    id:
+        Stable unique identifier (e.g. ``retriever.fetch`` or ``svc-checkout``).
+    kind:
+        Free-form category used for grouping in reports (``service``,
