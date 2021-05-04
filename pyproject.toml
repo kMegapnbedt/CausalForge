@@ -1,3 +1,4 @@
 [project]
 name = "causalforge"
 version = "0.1.0"
+description = "AI Failure Causality Explorer"
