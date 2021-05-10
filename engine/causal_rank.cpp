@@ -73,3 +73,22 @@ public:
         if (it == index.end()) return nullptr;
         return &nodes[it->second];
     }
+
+    // Outgoing adjacency (src -> list of edge indices).
+    std::unordered_map<std::string, std::vector<std::size_t>> out_adj() const {
+        std::unordered_map<std::string, std::vector<std::size_t>> adj;
+        for (std::size_t i = 0; i < edges.size(); ++i) {
+            adj[edges[i].src].push_back(i);
+        }
+        return adj;
+    }
+
+    // Incoming adjacency (dst -> list of edge indices).
+    std::unordered_map<std::string, std::vector<std::size_t>> in_adj() const {
+        std::unordered_map<std::string, std::vector<std::size_t>> adj;
+        for (std::size_t i = 0; i < edges.size(); ++i) {
+            adj[edges[i].dst].push_back(i);
+        }
+        return adj;
+    }
+};
