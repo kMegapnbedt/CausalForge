@@ -30,3 +30,7 @@
     <g>
       <rect x="70" y="90" width="170" height="90" rx="10" fill="#1c1f24" stroke="#ff8a3c" stroke-width="2"/>
       <text x="155" y="125" fill="#ffd27a" font-size="18" font-weight="700">Ingest</text>
+      <text x="155" y="150" fill="#8a9099" font-size="12">events + edges</text>
+      <text x="155" y="168" fill="#5b6068" font-size="11">JSON / stream</text>
+    </g>
+    <g>
