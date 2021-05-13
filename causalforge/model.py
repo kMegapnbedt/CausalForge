@@ -32,3 +32,9 @@ class Node:
         Stable unique identifier (e.g. ``retriever.fetch`` or ``svc-checkout``).
     kind:
         Free-form category used for grouping in reports (``service``,
+        ``tool_call``, ``model``, ``queue`` ...).
+    t_start / t_end:
+        Wall-clock offsets in seconds relative to the incident origin. Used by
+        the temporal propagation kernel.
+    status:
+        One of ``ok``, ``degraded`` or ``failed``.
