@@ -79,3 +79,19 @@ def _cmd_blast(args) -> int:
 
 
 def _cmd_convert(args) -> int:
+    if args.events:
+        with open(args.input, "r", encoding="utf-8") as fh:
+            incident = parse_events(fh.read())
+        # Emit JSON when reading events.
+        out = render_json(incident, CausalGraph(incident),
+                           rank_incident(CausalGraph(incident)))
+    else:
+        incident = load_incident(args.input)
+        out = to_events(incident)
+    _emit(out, args.output)
+    return 0
+
+
+def _cmd_validate(args) -> int:
+    incident = _read_incident(args)
+    graph = CausalGraph(incident)
