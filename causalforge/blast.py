@@ -27,3 +27,9 @@ def reachable_set(graph: CausalGraph, start: str) -> Set[str]:
     while stack:
         cur = stack.pop()
         if cur in seen:
+            continue
+        if visited_start:
+            seen.add(cur)
+        visited_start = True
+        for edge in graph.out_edges(cur):
+            if edge.dst not in seen and edge.dst != start:
