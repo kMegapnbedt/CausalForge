@@ -38,3 +38,9 @@ class Node:
         the temporal propagation kernel.
     status:
         One of ``ok``, ``degraded`` or ``failed``.
+    error_weight:
+        Local error evidence in the range ``[0, +inf)``. Higher means more
+        direct proof this node misbehaved (stack traces, 5xx counts, ...).
+    labels:
+        Arbitrary metadata carried through to reports untouched.
+    """
