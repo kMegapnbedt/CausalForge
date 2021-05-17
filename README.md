@@ -276,3 +276,31 @@ reference. In brief:
   "id": "INC-2026-0417",
   "title": "Checkout completion errors after retriever timeout",
   "origin_ts": "2026-04-17T09:14:22Z",
+  "summary": "Human-readable one-paragraph context.",
+  "nodes": [
+    {
+      "id": "cache.warmer",
+      "kind": "job",
+      "t_start": 0.0,
+      "t_end": 8.5,
+      "status": "failed",
+      "error_weight": 1.4,
+      "labels": { "team": "platform" }
+    }
+  ],
+  "edges": [
+    { "src": "cache.warmer", "dst": "vector.retriever", "coupling": 0.9, "relation": "warms" }
+  ]
+}
+```
+
+- `t_start` / `t_end` are seconds relative to the incident origin.
+- `status` is one of `ok`, `degraded`, `failed`.
+- `error_weight` is any non-negative number; scale it however your telemetry
+  makes sense, the model only cares about relative magnitude.
+- `coupling` is `0..1`; `relation` is a free-form label carried into reports.
+
+---
+
+## The compact event stream
+
