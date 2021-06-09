@@ -5,3 +5,4 @@ CausalForge is a AI Failure Causality Explorer that builds temporal dependency g
 ## System flow
 
 `	ext
+fixtures or operator input -> parser -> normalized domain records -> analysis engine -> report model -> terminal / JSON / Markdown
