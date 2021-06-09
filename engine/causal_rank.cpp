@@ -92,3 +92,22 @@ public:
         return adj;
     }
 };
+
+// Temporal decay kernel: upstream events that occur *before* a failing sink
+// are more suspicious the closer they are in time. We use a bounded
+// exponential so ordering never produces negative or exploding weights.
+static double temporal_kernel(double upstream_end, double downstream_start,
+                              double half_life) {
+    double dt = downstream_start - upstream_end;
+    if (dt < 0.0) {
+        // Upstream ended after downstream started: weak causal support.
+        return 0.15;
+    }
+    if (half_life <= 0.0) half_life = 1.0;
+    return std::exp(-0.6931471805599453 * dt / half_life);
+}
+
+// Count downstream-reachable nodes for a given start via BFS. This is the
+// blast radius: how much of the graph a failure at `start` can influence.
+static int blast_radius(const CausalGraph& g,
+                        const std::unordered_map<std::string, std::vector<std::size_t>>& adj,
