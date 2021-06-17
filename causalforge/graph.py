@@ -34,3 +34,12 @@ class CausalGraph:
 
     def node(self, node_id: str) -> Node:
         return self._nodes[node_id]
+
+    def has_node(self, node_id: str) -> bool:
+        return node_id in self._nodes
+
+    def out_edges(self, node_id: str) -> List[Edge]:
+        return self._out.get(node_id, [])
+
+    def in_edges(self, node_id: str) -> List[Edge]:
+        return self._in.get(node_id, [])
