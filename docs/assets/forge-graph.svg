@@ -67,3 +67,9 @@
     <text x="340" y="240">embedding</text>
     <circle cx="540" cy="150" r="15" fill="#2b2f36" stroke="#ff8a3c" stroke-width="2"/>
     <text x="540" y="126">orchestrator</text>
+    <g>
+      <circle cx="740" cy="110" r="16" fill="url(#ember)" filter="url(#glow)">
+        <animate attributeName="opacity" values="1;0.55;1" dur="1.6s" repeatCount="indefinite"/>
+      </circle>
+      <text x="740" y="86">payment</text>
+    </g>
