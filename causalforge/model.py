@@ -44,3 +44,8 @@ class Node:
     labels:
         Arbitrary metadata carried through to reports untouched.
     """
+
+    id: str
+    kind: str = "event"
+    t_start: float = 0.0
+    t_end: float = 0.0
