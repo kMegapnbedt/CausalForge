@@ -49,3 +49,9 @@ class Node:
     kind: str = "event"
     t_start: float = 0.0
     t_end: float = 0.0
+    status: str = STATUS_OK
+    error_weight: float = 0.0
+    labels: Dict[str, str] = field(default_factory=dict)
+
+    @property
+    def severity(self) -> float:
