@@ -38,3 +38,8 @@
       <text x="365" y="125" fill="#ffd27a" font-size="18" font-weight="700">Propagate</text>
       <text x="365" y="150" fill="#8a9099" font-size="12">temporal blame</text>
       <text x="365" y="168" fill="#5b6068" font-size="11">half-life kernel</text>
+    </g>
+    <g>
+      <rect x="490" y="90" width="170" height="90" rx="10" fill="#1c1f24" stroke="#ff8a3c" stroke-width="2"/>
+      <text x="575" y="125" fill="#ffd27a" font-size="18" font-weight="700">Fuse</text>
+      <text x="575" y="150" fill="#8a9099" font-size="12">error evidence</text>
