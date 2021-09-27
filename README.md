@@ -304,3 +304,31 @@ reference. In brief:
 
 ## The compact event stream
 
+For shell pipelines and the C++ engine, CausalForge also speaks a
+whitespace-delimited line format:
+
+```
+# comments start with hash
+N <id> <t_start> <t_end> <status_code> <error_weight>
+E <src> <dst> <coupling>
+```
+
+where `status_code` is `0` (ok), `1` (degraded), `2` (failed). This is the exact
+grammar the C++ core parses, and the Python package can read it with
+`--events` or produce it with `causalforge convert`. The bundled
+`examples/incident_checkout.events` is the same incident as the JSON fixture,
+which is why both engines agree.
+
+---
+
+## CLI reference and recipes
+
+```
+python -m causalforge <command> <input> [options]
+```
+
+| Command    | Purpose                                                     |
+| ---------- | ----------------------------------------------------------- |
+| `analyze`  | Rank likely root causes and render a report                 |
+| `timeline` | Reconstruct and print the incident timeline                 |
+| `blast`    | Report the blast radius of a single node                    |
