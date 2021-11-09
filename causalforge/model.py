@@ -55,3 +55,9 @@ class Node:
 
     @property
     def severity(self) -> float:
+        """Numeric severity derived from :attr:`status`."""
+        return _STATUS_SEVERITY.get(self.status, 0.0)
+
+    @property
+    def duration(self) -> float:
+        return max(0.0, self.t_end - self.t_start)
