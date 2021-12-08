@@ -95,3 +95,19 @@ def _cmd_convert(args) -> int:
 def _cmd_validate(args) -> int:
     incident = _read_incident(args)
     graph = CausalGraph(incident)
+    warnings = graph.validate()
+    print(f"nodes={graph.order()} edges={graph.size()} "
+          f"sources={len(graph.sources())} sinks={len(graph.sinks())} "
+          f"failing={len(graph.failing())}")
+    if warnings:
+        print("warnings:")
+        for w in warnings:
+            print(f"  - {w}")
+        return 1
+    print("ok: no structural warnings")
+    return 0
+
+
+def _emit(text: str, output: Optional[str]) -> None:
+    if output:
+        with open(output, "w", encoding="utf-8") as fh:
