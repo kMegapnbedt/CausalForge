@@ -54,3 +54,11 @@ def incident_from_dict(raw: dict) -> Incident:
         summary=str(raw.get("summary", "")),
     )
 
+
+_STATUS_FROM_CODE = {0: "ok", 1: "degraded", 2: "failed"}
+
+
+def parse_events(text: str) -> Incident:
+    """Parse the compact line format shared with the C++ engine.
+
+    Grammar (whitespace separated)::
