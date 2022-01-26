@@ -18,3 +18,6 @@ It mirrors the ranking core implemented in ``engine/causal_rank.cpp``.
 
 from __future__ import annotations
 
+from .model import Node, Edge, Incident, Suspect
+from .graph import CausalGraph
+from .rank import rank_incident, RankConfig
