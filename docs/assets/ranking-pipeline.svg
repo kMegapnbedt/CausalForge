@@ -47,3 +47,7 @@
     </g>
     <g>
       <rect x="700" y="90" width="170" height="90" rx="10" fill="#1c1f24" stroke="#ffd27a" stroke-width="2.5"/>
+      <text x="785" y="125" fill="#ffe0a3" font-size="18" font-weight="700">Rank</text>
+      <text x="785" y="150" fill="#8a9099" font-size="12">suspects + report</text>
+      <text x="785" y="168" fill="#5b6068" font-size="11">md / json</text>
+    </g>
