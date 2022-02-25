@@ -111,3 +111,22 @@ static double temporal_kernel(double upstream_end, double downstream_start,
 // blast radius: how much of the graph a failure at `start` can influence.
 static int blast_radius(const CausalGraph& g,
                         const std::unordered_map<std::string, std::vector<std::size_t>>& adj,
+                        const std::string& start) {
+    std::map<std::string, bool> seen;
+    std::vector<std::string> stack{start};
+    seen[start] = true;
+    int count = 0;
+    while (!stack.empty()) {
+        std::string cur = stack.back();
+        stack.pop_back();
+        auto it = adj.find(cur);
+        if (it == adj.end()) continue;
+        for (std::size_t ei : it->second) {
+            const std::string& nxt = g.edges[ei].dst;
+            if (!seen[nxt]) {
+                seen[nxt] = true;
+                ++count;
+                stack.push_back(nxt);
+            }
+        }
+    }
