@@ -332,3 +332,31 @@ python -m causalforge <command> <input> [options]
 | `analyze`  | Rank likely root causes and render a report                 |
 | `timeline` | Reconstruct and print the incident timeline                 |
 | `blast`    | Report the blast radius of a single node                    |
+| `convert`  | JSON → compact stream, or compact stream → JSON analysis    |
+| `validate` | Structural validation and graph statistics                  |
+
+Global options common to every command: `--events` (treat input as the compact
+stream) and `-o/--output FILE` (write to a file instead of stdout).
+
+**Recipe — full investigation to a file**
+
+```bash
+python -m causalforge analyze examples/incident_checkout.json \
+  --format markdown -o postmortem.md
+```
+
+**Recipe — tune the propagation for a bursty incident**
+
+```bash
+python -m causalforge analyze examples/incident_checkout.json \
+  --half-life 2.5 --damping 0.7 --rounds 8
+```
+
+A shorter half-life makes the model more sensitive to tight temporal
+correlation; higher damping lets blame travel further up long chains.
+
+**Recipe — feed the C++ core from the JSON incident**
+
+```bash
+python -m causalforge convert examples/incident_checkout.json > incident.events
+./causal_rank incident.events
