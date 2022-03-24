@@ -12,3 +12,5 @@
     { "id": "notification.queue","kind": "queue",     "t_start": 18.0, "t_end": 19.0, "status": "ok",       "error_weight": 0.0, "labels": {"team": "platform"} },
     { "id": "checkout.frontend", "kind": "service",   "t_start": 20.0, "t_end": 22.5, "status": "failed",   "error_weight": 0.5, "labels": {"team": "web"} }
   ],
+  "edges": [
+    { "src": "cache.warmer",       "dst": "vector.retriever",   "coupling": 0.9,  "relation": "warms" },
