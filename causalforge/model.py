@@ -61,3 +61,9 @@ class Node:
     @property
     def duration(self) -> float:
         return max(0.0, self.t_end - self.t_start)
+
+
+@dataclass
+class Edge:
+    """A directed causal dependency: ``src`` can influence ``dst``.
+
