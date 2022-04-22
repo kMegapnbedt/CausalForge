@@ -33,3 +33,9 @@ def reachable_set(graph: CausalGraph, start: str) -> Set[str]:
         visited_start = True
         for edge in graph.out_edges(cur):
             if edge.dst not in seen and edge.dst != start:
+                stack.append(edge.dst)
+    seen.discard(start)
+    return seen
+
+
+def blast_radius(graph: CausalGraph, start: str) -> int:
