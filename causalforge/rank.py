@@ -55,3 +55,14 @@ class RankConfig:
 
 def _temporal_kernel(upstream_end: float, downstream_start: float,
                      half_life: float, late_floor: float) -> float:
+    """Exponential half-life decay over the causal time gap."""
+    dt = downstream_start - upstream_end
+    if dt < 0.0:
+        return late_floor
+    return math.exp(-math.log(2.0) * dt / half_life)
+
+
+def _propagate(graph: CausalGraph, cfg: RankConfig) -> Dict[str, float]:
+    """Run backward blame propagation and return per-node blame."""
+    blame: Dict[str, float] = {}
+    for node in graph.nodes():
