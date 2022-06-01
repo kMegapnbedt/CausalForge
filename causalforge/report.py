@@ -57,3 +57,10 @@ def render_markdown(incident: Incident, graph: CausalGraph,
     lines.append(f"- **Nodes:** {graph.order()}  **Edges:** {graph.size()}")
     if suspects:
         lines.append(f"- **Primary suspect:** `{suspects[0].node_id}` "
+                     f"(score {suspects[0].score:.3f})")
+    lines.append("")
+    if incident.summary:
+        lines.append("## Summary")
+        lines.append("")
+        lines.append(incident.summary)
+        lines.append("")
