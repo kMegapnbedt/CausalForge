@@ -28,3 +28,6 @@ def _lane(t_start: float, t_end: float, span_start: float, span_end: float,
     total = max(1e-6, span_end - span_start)
     lead = int(round((t_start - span_start) / total * width))
     length = max(1, int(round((t_end - t_start) / total * width)))
+    lead = max(0, min(width, lead))
+    length = max(1, min(width - lead, length))
+    return " " * lead + "#" * length
