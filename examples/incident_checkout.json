@@ -16,3 +16,4 @@
     { "src": "cache.warmer",       "dst": "vector.retriever",   "coupling": 0.9,  "relation": "warms" },
     { "src": "embedding.model",    "dst": "vector.retriever",   "coupling": 0.7,  "relation": "feeds" },
     { "src": "vector.retriever",   "dst": "order.orchestrator", "coupling": 0.85, "relation": "calls" },
+    { "src": "order.orchestrator", "dst": "payment.service",    "coupling": 0.95, "relation": "calls" },
