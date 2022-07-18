@@ -43,3 +43,12 @@ class CausalGraph:
 
     def in_edges(self, node_id: str) -> List[Edge]:
         return self._in.get(node_id, [])
+
+    def order(self) -> int:
+        return len(self._nodes)
+
+    def size(self) -> int:
+        return len(self.incident.edges)
+
+    # -- structural queries ----------------------------------------------
+    def sinks(self) -> List[Node]:
