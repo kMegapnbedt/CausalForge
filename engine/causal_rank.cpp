@@ -130,3 +130,22 @@ static int blast_radius(const CausalGraph& g,
             }
         }
     }
+    return count;
+}
+
+// The core ranking routine. Blame flows backward from failed/degraded sinks
+// along incoming edges, attenuated by coupling strength and the temporal
+// kernel. We iterate a fixed number of propagation rounds so the algorithm
+// is deterministic and terminates without a convergence oracle.
+void rank(CausalGraph& g, int rounds = 6, double half_life = 5.0) {
+    auto in = g.in_adj();
+    auto out = g.out_adj();
+
+    // Seed: failing sinks inject blame proportional to severity.
+    for (auto& n : g.nodes) {
+        if (n.status == 2) n.blame = 1.0;
+        else if (n.status == 1) n.blame = 0.4;
+        else n.blame = 0.0;
+    }
+
+    // Propagate blame upstream over several damped rounds.
