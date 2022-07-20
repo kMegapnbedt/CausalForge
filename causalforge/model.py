@@ -67,3 +67,8 @@ class Node:
 class Edge:
     """A directed causal dependency: ``src`` can influence ``dst``.
 
+    ``coupling`` in ``[0, 1]`` expresses how strongly a fault in ``src`` is
+    expected to manifest in ``dst``. A synchronous, blocking call is close to
+    ``1.0``; a best-effort fire-and-forget notification is closer to ``0.1``.
+    """
+
