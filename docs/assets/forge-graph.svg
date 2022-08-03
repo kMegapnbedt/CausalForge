@@ -73,3 +73,10 @@
       </circle>
       <text x="740" y="86">payment</text>
     </g>
+    <circle cx="740" cy="200" r="13" fill="#2b2f36" stroke="#5b6068" stroke-width="2"/>
+    <text x="740" y="230">notify.queue</text>
+  </g>
+
+  <!-- title lockup -->
+  <g font-family="Segoe UI,Helvetica,Arial,sans-serif">
+    <text x="40" y="46" fill="#ffd27a" font-size="26" font-weight="700">CausalForge</text>
