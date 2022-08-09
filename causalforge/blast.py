@@ -39,3 +39,9 @@ def reachable_set(graph: CausalGraph, start: str) -> Set[str]:
 
 
 def blast_radius(graph: CausalGraph, start: str) -> int:
+    """Number of downstream-reachable nodes from ``start``."""
+    return len(reachable_set(graph, start))
+
+
+def weighted_blast(graph: CausalGraph, start: str) -> float:
+    """Coupling-weighted blast radius.
