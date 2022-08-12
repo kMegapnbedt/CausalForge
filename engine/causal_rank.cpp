@@ -149,3 +149,22 @@ void rank(CausalGraph& g, int rounds = 6, double half_life = 5.0) {
     }
 
     // Propagate blame upstream over several damped rounds.
+    for (int r = 0; r < rounds; ++r) {
+        std::unordered_map<std::string, double> delta;
+        for (const auto& n : g.nodes) {
+            if (n.blame <= 1e-9) continue;
+            auto it = in.find(n.id);
+            if (it == in.end()) continue;
+            for (std::size_t ei : it->second) {
+                const Edge& e = g.edges[ei];
+                Node* up = g.find(e.src);
+                if (!up) continue;
+                double k = temporal_kernel(up->t_end, n.t_start, half_life);
+                double transfer = n.blame * e.coupling * k * 0.55;
+                delta[up->id] += transfer;
+            }
+        }
+        for (auto& kv : delta) {
+            Node* up = g.find(kv.first);
+            if (up) up->blame += kv.second;
+        }
