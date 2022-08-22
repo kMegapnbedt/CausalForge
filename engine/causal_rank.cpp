@@ -168,3 +168,22 @@ void rank(CausalGraph& g, int rounds = 6, double half_life = 5.0) {
             Node* up = g.find(kv.first);
             if (up) up->blame += kv.second;
         }
+    }
+
+    // Fold in local error evidence and blast radius; compute final score.
+    for (auto& n : g.nodes) {
+        n.reachable = blast_radius(g, out, n.id);
+        double radius_factor = 1.0 + std::log1p(static_cast<double>(n.reachable)) * 0.25;
+        n.score = (n.blame + n.error_weight) * radius_factor;
+    }
+}
+
+// Parse the compact line format into a graph. Returns false on malformed input
+// but tolerates comments and blank lines.
+bool parse(std::istream& in, CausalGraph& g, std::string& err) {
+    std::string line;
+    std::size_t lineno = 0;
+    while (std::getline(in, line)) {
+        ++lineno;
+        // Trim leading whitespace.
+        std::size_t s = line.find_first_not_of(" \t\r\n");
