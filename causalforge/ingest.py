@@ -62,3 +62,11 @@ def parse_events(text: str) -> Incident:
     """Parse the compact line format shared with the C++ engine.
 
     Grammar (whitespace separated)::
+
+        N <id> <t_start> <t_end> <status_code> <error_weight>
+        E <src> <dst> <coupling>
+
+    Lines beginning with ``#`` and blank lines are ignored.
+    """
+    nodes: List[Node] = []
+    edges: List[Edge] = []
