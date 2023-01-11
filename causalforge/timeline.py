@@ -31,3 +31,6 @@ def _lane(t_start: float, t_end: float, span_start: float, span_end: float,
     lead = max(0, min(width, lead))
     length = max(1, min(width - lead, length))
     return " " * lead + "#" * length
+
+
+def build_timeline(graph: CausalGraph) -> List[TimelineEntry]:
