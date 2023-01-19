@@ -64,3 +64,11 @@ def render_markdown(incident: Incident, graph: CausalGraph,
         lines.append("")
         lines.append(incident.summary)
         lines.append("")
+
+    lines.append("## Ranked suspects")
+    lines.append("")
+    lines.append("| Rank | Node | Score | Blame | ErrW | Radius |")
+    lines.append("| ---: | :--- | ----: | ----: | ---: | -----: |")
+    for i, s in enumerate(suspects, start=1):
+        lines.append(
+            f"| {i} | `{s.node_id}` | {s.score:.3f} | {s.blame:.3f} "
