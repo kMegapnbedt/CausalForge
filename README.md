@@ -360,3 +360,31 @@ correlation; higher damping lets blame travel further up long chains.
 ```bash
 python -m causalforge convert examples/incident_checkout.json > incident.events
 ./causal_rank incident.events
+```
+
+**Recipe — CI gate on structural health**
+
+```bash
+python -m causalforge validate incident.json || exit 1
+```
+
+`validate` exits non-zero when it finds dangling edges, self-loops, or
+out-of-range couplings, so it drops cleanly into a pre-merge check.
+
+---
+
+## The C++ ranking core
+
+`engine/causal_rank.cpp` is a single self-contained translation unit. It reads
+the compact stream from a file argument or stdin, builds the same graph, runs
+the same backward propagation and blast-radius passes, and prints a ranked
+table. It uses only the C++ standard library.
+
+```bash
+# Optimised build
+g++ -std=c++17 -Wall -Wextra -pedantic -O2 -o causal_rank engine/causal_rank.cpp
+
+# Syntax-only validation (used in CI)
+g++ -std=c++17 -Wall -Wextra -pedantic -fsyntax-only engine/causal_rank.cpp
+
+# Pipe an incident in
