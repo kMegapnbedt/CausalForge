@@ -21,3 +21,6 @@ from __future__ import annotations
 from .model import Node, Edge, Incident, Suspect
 from .graph import CausalGraph
 from .rank import rank_incident, RankConfig
+from .blast import blast_radius, reachable_set
+from .timeline import build_timeline, TimelineEntry
+from .report import render_markdown, render_json
