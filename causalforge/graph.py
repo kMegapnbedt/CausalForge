@@ -52,3 +52,12 @@ class CausalGraph:
 
     # -- structural queries ----------------------------------------------
     def sinks(self) -> List[Node]:
+        """Nodes with no outgoing edges (leaf effects)."""
+        return [n for n in self._nodes.values() if not self._out.get(n.id)]
+
+    def sources(self) -> List[Node]:
+        """Nodes with no incoming edges (potential ultimate causes)."""
+        return [n for n in self._nodes.values() if not self._in.get(n.id)]
+
+    def failing(self) -> List[Node]:
+        return [n for n in self._nodes.values() if n.severity > 0.0]
