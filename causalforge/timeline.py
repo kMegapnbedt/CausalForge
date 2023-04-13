@@ -34,3 +34,6 @@ def _lane(t_start: float, t_end: float, span_start: float, span_end: float,
 
 
 def build_timeline(graph: CausalGraph) -> List[TimelineEntry]:
+    """Return events ordered by start time, then id."""
+    nodes = sorted(graph.nodes(), key=lambda n: (n.t_start, n.id))
+    if not nodes:
