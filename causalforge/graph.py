@@ -61,3 +61,12 @@ class CausalGraph:
 
     def failing(self) -> List[Node]:
         return [n for n in self._nodes.values() if n.severity > 0.0]
+
+    def validate(self) -> List[str]:
+        """Return a list of human-readable structural warnings.
+
+        Non-fatal: dangling edges, self loops, and orphan nodes are reported
+        but the graph still functions.
+        """
+        warnings: List[str] = []
+        for edge in self.incident.edges:
