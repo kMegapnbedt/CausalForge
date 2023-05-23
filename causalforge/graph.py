@@ -70,3 +70,12 @@ class CausalGraph:
         """
         warnings: List[str] = []
         for edge in self.incident.edges:
+            if edge.src not in self._nodes:
+                warnings.append(f"edge references unknown source '{edge.src}'")
+            if edge.dst not in self._nodes:
+                warnings.append(f"edge references unknown target '{edge.dst}'")
+            if edge.src == edge.dst:
+                warnings.append(f"self-loop on node '{edge.src}'")
+            if not (0.0 <= edge.coupling <= 1.0):
+                warnings.append(
+                    f"coupling out of range on {edge.src}->{edge.dst}: {edge.coupling}"
