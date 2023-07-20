@@ -55,3 +55,7 @@
 
   <!-- animated hammer strike between stations -->
   <g stroke="#ff8a3c" stroke-width="3" fill="none" filter="url(#soft)">
+    <line x1="240" y1="135" x2="280" y2="135" stroke-dasharray="8 8">
+      <animate attributeName="stroke-dashoffset" from="16" to="0" dur="0.9s" repeatCount="indefinite"/>
+    </line>
+    <line x1="450" y1="135" x2="490" y2="135" stroke-dasharray="8 8">
