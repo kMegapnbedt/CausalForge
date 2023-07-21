@@ -7,3 +7,4 @@ python:
 
 native:
 	g++ -std=c++17 -Wall -Wextra -pedantic -fsyntax-only engine/causal_rank.cpp
+
