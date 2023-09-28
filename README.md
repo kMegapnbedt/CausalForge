@@ -388,3 +388,31 @@ g++ -std=c++17 -Wall -Wextra -pedantic -O2 -o causal_rank engine/causal_rank.cpp
 g++ -std=c++17 -Wall -Wextra -pedantic -fsyntax-only engine/causal_rank.cpp
 
 # Pipe an incident in
+cat examples/incident_checkout.events | ./causal_rank
+```
+
+The core exists so the scoring math can be embedded where a Python interpreter
+is inconvenient — an agent runtime, a sidecar, a build hook. Because it shares
+the fixture with the Python package, any divergence between the two shows up
+immediately as a different ranking on the same input.
+
+---
+
+## Reports and artefacts
+
+**Markdown investigation** (`--format markdown`, the default) contains:
+
+- an incident header with the primary suspect,
+- a ranked suspect table (score, blame, error weight, blast radius),
+- a "why these suspects" section with per-node rationale,
+- a timeline with an ASCII gantt strip,
+- any structural warnings.
+
+**JSON investigation** (`--format json`) contains the same information in a
+machine-readable shape: `incident` metadata, `primary_suspect`, the full
+`suspects` array with rationale, the ordered `timeline`, and `warnings`. Feed it
+to a dashboard, an alerting rule, or an incident bot.
+
+---
+
+## Operations playbook
