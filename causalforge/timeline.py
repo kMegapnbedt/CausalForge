@@ -37,3 +37,6 @@ def build_timeline(graph: CausalGraph) -> List[TimelineEntry]:
     """Return events ordered by start time, then id."""
     nodes = sorted(graph.nodes(), key=lambda n: (n.t_start, n.id))
     if not nodes:
+        return []
+    span_start = min(n.t_start for n in nodes)
+    span_end = max(n.t_end for n in nodes)
