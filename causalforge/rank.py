@@ -66,3 +66,14 @@ def _propagate(graph: CausalGraph, cfg: RankConfig) -> Dict[str, float]:
     """Run backward blame propagation and return per-node blame."""
     blame: Dict[str, float] = {}
     for node in graph.nodes():
+        blame[node.id] = node.severity
+
+    for _ in range(cfg.rounds):
+        delta: Dict[str, float] = {}
+        for node in graph.nodes():
+            b = blame.get(node.id, 0.0)
+            if b <= 1e-9:
+                continue
+            for edge in graph.in_edges(node.id):
+                if not graph.has_node(edge.src):
+                    continue
