@@ -70,3 +70,11 @@ def parse_events(text: str) -> Incident:
     """
     nodes: List[Node] = []
     edges: List[Edge] = []
+    for lineno, line in enumerate(text.splitlines(), start=1):
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        parts = stripped.split()
+        kind = parts[0]
+        if kind == "N":
+            if len(parts) != 6:
