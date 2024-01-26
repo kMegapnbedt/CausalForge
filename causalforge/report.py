@@ -72,3 +72,10 @@ def render_markdown(incident: Incident, graph: CausalGraph,
     for i, s in enumerate(suspects, start=1):
         lines.append(
             f"| {i} | `{s.node_id}` | {s.score:.3f} | {s.blame:.3f} "
+            f"| {s.error_weight:.2f} | {s.blast_radius} |"
+        )
+    lines.append("")
+
+    lines.append("## Why these suspects")
+    lines.append("")
+    for s in suspects[: min(5, len(suspects))]:
