@@ -79,3 +79,12 @@ class CausalGraph:
             if not (0.0 <= edge.coupling <= 1.0):
                 warnings.append(
                     f"coupling out of range on {edge.src}->{edge.dst}: {edge.coupling}"
+                )
+        return warnings
+
+    def topo_order(self) -> List[str]:
+        """A best-effort topological order.
+
+        On cyclic graphs the remaining nodes are appended in id order after the
+        acyclic prefix so callers always receive every node exactly once.
+        """
