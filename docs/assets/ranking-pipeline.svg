@@ -63,3 +63,7 @@
     </line>
     <line x1="660" y1="135" x2="700" y2="135" stroke-dasharray="8 8">
       <animate attributeName="stroke-dashoffset" from="16" to="0" dur="0.9s" begin="0.6s" repeatCount="indefinite"/>
+    </line>
+  </g>
+
+  <!-- anvil ember sparks under the final rank -->
