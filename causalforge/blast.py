@@ -45,3 +45,9 @@ def blast_radius(graph: CausalGraph, start: str) -> int:
 
 def weighted_blast(graph: CausalGraph, start: str) -> float:
     """Coupling-weighted blast radius.
+
+    Instead of counting nodes equally, sum the product of edge couplings along
+    the shortest discovered path. This rewards culprits that are *tightly*
+    coupled to a large downstream region.
+    """
+    if not graph.has_node(start):
