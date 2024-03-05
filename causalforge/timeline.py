@@ -40,3 +40,6 @@ def build_timeline(graph: CausalGraph) -> List[TimelineEntry]:
         return []
     span_start = min(n.t_start for n in nodes)
     span_end = max(n.t_end for n in nodes)
+    entries: List[TimelineEntry] = []
+    for n in nodes:
+        entries.append(
