@@ -51,3 +51,9 @@ def weighted_blast(graph: CausalGraph, start: str) -> float:
     coupled to a large downstream region.
     """
     if not graph.has_node(start):
+        return 0.0
+    best: dict = {start: 1.0}
+    stack = [start]
+    while stack:
+        cur = stack.pop()
+        base = best.get(cur, 0.0)
