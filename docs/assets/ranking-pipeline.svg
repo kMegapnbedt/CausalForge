@@ -67,3 +67,7 @@
   </g>
 
   <!-- anvil ember sparks under the final rank -->
+  <g fill="#ffb066">
+    <circle cx="785" cy="185" r="2">
+      <animate attributeName="cy" values="185;205" dur="1.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0" dur="1.2s" repeatCount="indefinite"/>
