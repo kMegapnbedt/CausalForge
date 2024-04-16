@@ -27,3 +27,6 @@ from .report import render_markdown, render_json
 from .ingest import load_incident, parse_events
 
 __all__ = [
+    "Node",
+    "Edge",
+    "Incident",
