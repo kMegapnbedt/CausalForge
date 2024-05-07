@@ -43,3 +43,6 @@ def build_timeline(graph: CausalGraph) -> List[TimelineEntry]:
     entries: List[TimelineEntry] = []
     for n in nodes:
         entries.append(
+            TimelineEntry(
+                node_id=n.id,
+                t_start=n.t_start,
