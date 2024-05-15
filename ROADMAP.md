@@ -6,3 +6,5 @@
 - [x] Blast-radius and timeline analysis
 - [x] JSON and Markdown investigation reports
 
+## Next horizons
+- [ ] Comparative scenario collections
