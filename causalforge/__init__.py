@@ -30,3 +30,6 @@ __all__ = [
     "Node",
     "Edge",
     "Incident",
+    "Suspect",
+    "CausalGraph",
+    "rank_incident",
