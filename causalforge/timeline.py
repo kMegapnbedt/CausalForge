@@ -46,3 +46,6 @@ def build_timeline(graph: CausalGraph) -> List[TimelineEntry]:
             TimelineEntry(
                 node_id=n.id,
                 t_start=n.t_start,
+                t_end=n.t_end,
+                status=n.status,
+                kind=n.kind,
