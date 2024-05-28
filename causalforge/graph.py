@@ -88,3 +88,12 @@ class CausalGraph:
         On cyclic graphs the remaining nodes are appended in id order after the
         acyclic prefix so callers always receive every node exactly once.
         """
+        indeg: Dict[str, int] = {nid: 0 for nid in self._nodes}
+        for edge in self.incident.edges:
+            if edge.dst in indeg:
+                indeg[edge.dst] += 1
+        queue = sorted([nid for nid, d in indeg.items() if d == 0])
+        order: List[str] = []
+        seen: Set[str] = set()
+        while queue:
+            nid = queue.pop(0)
