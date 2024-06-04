@@ -187,3 +187,22 @@ bool parse(std::istream& in, CausalGraph& g, std::string& err) {
         ++lineno;
         // Trim leading whitespace.
         std::size_t s = line.find_first_not_of(" \t\r\n");
+        if (s == std::string::npos) continue;
+        if (line[s] == '#') continue;
+        std::istringstream ss(line);
+        char kind = 0;
+        ss >> kind;
+        if (kind == 'N') {
+            Node n;
+            if (!(ss >> n.id >> n.t_start >> n.t_end >> n.status >> n.error_weight)) {
+                err = "malformed N record at line " + std::to_string(lineno);
+                return false;
+            }
+            g.add_node(n);
+        } else if (kind == 'E') {
+            Edge e;
+            if (!(ss >> e.src >> e.dst >> e.coupling)) {
+                err = "malformed E record at line " + std::to_string(lineno);
+                return false;
+            }
+            g.add_edge(e);
