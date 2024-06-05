@@ -78,3 +78,11 @@ def parse_events(text: str) -> Incident:
         kind = parts[0]
         if kind == "N":
             if len(parts) != 6:
+                raise ValueError(f"malformed N record at line {lineno}")
+            _, nid, ts, te, status_code, ew = parts
+            nodes.append(
+                Node(
+                    id=nid,
+                    t_start=float(ts),
+                    t_end=float(te),
+                    status=_STATUS_FROM_CODE.get(int(status_code), "ok"),
