@@ -97,3 +97,12 @@ class CausalGraph:
         seen: Set[str] = set()
         while queue:
             nid = queue.pop(0)
+            if nid in seen:
+                continue
+            seen.add(nid)
+            order.append(nid)
+            children = sorted(e.dst for e in self._out.get(nid, []))
+            for child in children:
+                if child in indeg:
+                    indeg[child] -= 1
+                    if indeg[child] == 0 and child not in seen:
