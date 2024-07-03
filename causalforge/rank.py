@@ -89,3 +89,14 @@ def _propagate(graph: CausalGraph, cfg: RankConfig) -> Dict[str, float]:
 
 
 def _rationale(node, blame: float, radius: int) -> List[str]:
+    reasons: List[str] = []
+    if node.status == "failed":
+        reasons.append("node reported a hard failure")
+    elif node.status == "degraded":
+        reasons.append("node reported degraded status")
+    if node.error_weight >= 1.0:
+        reasons.append(f"strong local error evidence ({node.error_weight:.2f})")
+    elif node.error_weight > 0.0:
+        reasons.append(f"local error evidence ({node.error_weight:.2f})")
+    if blame >= 0.75:
+        reasons.append("high propagated blame from downstream failures")
