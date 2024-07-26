@@ -80,3 +80,9 @@
   <!-- title lockup -->
   <g font-family="Segoe UI,Helvetica,Arial,sans-serif">
     <text x="40" y="46" fill="#ffd27a" font-size="26" font-weight="700">CausalForge</text>
+    <text x="40" y="70" fill="#8a9099" font-size="13">blame flows backward from failing sinks to the ember at the origin</text>
+  </g>
+
+  <!-- forge ember shower -->
+  <g fill="#ffb066">
+    <circle cx="150" cy="150" r="2">
