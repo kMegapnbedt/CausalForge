@@ -72,3 +72,9 @@ class Edge:
     ``1.0``; a best-effort fire-and-forget notification is closer to ``0.1``.
     """
 
+    src: str
+    dst: str
+    coupling: float = 1.0
+    relation: str = "calls"
+
+
