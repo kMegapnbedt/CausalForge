@@ -33,3 +33,6 @@ __all__ = [
     "Suspect",
     "CausalGraph",
     "rank_incident",
+    "RankConfig",
+    "blast_radius",
+    "reachable_set",
