@@ -416,3 +416,31 @@ to a dashboard, an alerting rule, or an incident bot.
 ---
 
 ## Operations playbook
+
+- **Ingesting from tracing systems.** Map each span to a `Node` (span name →
+  `id`, span kind → `kind`, start/end → `t_start`/`t_end`) and each parent/child
+  or client/server relationship to an `Edge`. Derive `error_weight` from span
+  status and log volume; set `status` from span error flags.
+- **Choosing couplings.** Synchronous, blocking calls are close to `1.0`.
+  Asynchronous best-effort emissions (fire-and-forget queues, metrics) are
+  closer to `0.1–0.3`. Coupling is the single most impactful knob on ranking
+  quality.
+- **Reading the score.** A high score with high blast radius and high error
+  weight is a confident call. A high score driven purely by blast radius with
+  near-zero blame is a *structural* suspect — plausible topologically but
+  lacking evidence; treat it as a lead, not a verdict.
+- **Reproducibility.** Because runs are deterministic, archive the incident file
+  alongside the report. Re-running later reproduces the exact ranking, which is
+  invaluable during a postmortem review.
+
+---
+
+## Extension seams
+
+CausalForge is small on purpose, and the seams are explicit:
+
+- **New status vocabulary** — extend `_STATUS_SEVERITY` in `model.py`.
+- **Alternative temporal kernels** — replace `_temporal_kernel` in `rank.py`
+  (e.g. a Gaussian window instead of exponential decay). The signature is
+  stable, so the rest of the pipeline is unaffected.
+- **New evidence signals** — add fields to `Node` and fold them into the fusion
