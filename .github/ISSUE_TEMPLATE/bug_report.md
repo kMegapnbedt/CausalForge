@@ -11,3 +11,4 @@ labels: bug
 
 ## Observed report
 
+## Expected analysis
