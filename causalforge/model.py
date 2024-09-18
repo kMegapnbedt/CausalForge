@@ -78,3 +78,9 @@ class Edge:
     relation: str = "calls"
 
 
+@dataclass
+class Incident:
+    """A complete incident: metadata plus the graph payload."""
+
+    id: str
+    title: str
