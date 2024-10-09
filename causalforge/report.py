@@ -79,3 +79,11 @@ def render_markdown(incident: Incident, graph: CausalGraph,
     lines.append("## Why these suspects")
     lines.append("")
     for s in suspects[: min(5, len(suspects))]:
+        lines.append(f"### `{s.node_id}`")
+        for reason in s.rationale:
+            lines.append(f"- {reason}")
+        lines.append("")
+
+    lines.append("## Timeline")
+    lines.append("")
+    lines.append("```")
