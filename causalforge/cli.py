@@ -111,3 +111,20 @@ def _cmd_validate(args) -> int:
 def _emit(text: str, output: Optional[str]) -> None:
     if output:
         with open(output, "w", encoding="utf-8") as fh:
+            fh.write(text)
+    else:
+        sys.stdout.write(text)
+        if not text.endswith("\n"):
+            sys.stdout.write("\n")
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="causalforge",
+        description="CausalForge — AI Failure Causality Explorer",
+    )
+    parser.add_argument("--version", action="store_true", help="print version and exit")
+    sub = parser.add_subparsers(dest="command")
+
+    def add_common(p):
+        p.add_argument("input", help="incident file (JSON, or compact with --events)")
