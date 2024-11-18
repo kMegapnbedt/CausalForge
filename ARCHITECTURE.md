@@ -15,3 +15,4 @@ fixtures or operator input -> parser -> normalized domain records -> analysis en
 - **Fixtures and docs** define stable, readable examples that make each analysis result reproducible.
 
 ## Data contracts
+
