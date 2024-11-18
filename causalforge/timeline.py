@@ -58,3 +58,6 @@ def build_timeline(graph: CausalGraph) -> List[TimelineEntry]:
 def timeline_text(entries: List[TimelineEntry]) -> str:
     """Render a timeline as an aligned monospace block."""
     if not entries:
+        return "(empty timeline)"
+    width = max(len(e.node_id) for e in entries)
+    lines = []
