@@ -84,3 +84,9 @@ class Incident:
 
     id: str
     title: str
+    nodes: List[Node] = field(default_factory=list)
+    edges: List[Edge] = field(default_factory=list)
+    origin_ts: Optional[str] = None
+    summary: str = ""
+
+    def node_index(self) -> Dict[str, Node]:
