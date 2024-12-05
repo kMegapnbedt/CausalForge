@@ -61,3 +61,6 @@ def timeline_text(entries: List[TimelineEntry]) -> str:
         return "(empty timeline)"
     width = max(len(e.node_id) for e in entries)
     lines = []
+    for e in entries:
+        marker = {"failed": "X", "degraded": "!", "ok": " "}.get(e.status, " ")
+        lines.append(
