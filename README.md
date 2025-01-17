@@ -444,3 +444,31 @@ CausalForge is small on purpose, and the seams are explicit:
   (e.g. a Gaussian window instead of exponential decay). The signature is
   stable, so the rest of the pipeline is unaffected.
 - **New evidence signals** — add fields to `Node` and fold them into the fusion
+  step in `rank_incident`.
+- **New input adapters** — add a loader to `ingest.py` that returns an
+  `Incident`; every downstream stage is format-agnostic.
+- **New report formats** — add a `render_*` function in `report.py`; the CLI
+  wires it in via a `--format` choice.
+- **New blast metrics** — `blast.py` already offers node-count and
+  coupling-weighted variants; add path-length or fan-out metrics alongside them.
+
+---
+
+## Design principles
+
+1. **Deterministic or nothing.** A root-cause tool that flickers between answers
+   erodes trust faster than being occasionally wrong.
+2. **Transparent math over opaque models.** Every coefficient is visible and
+   documented; a responder can audit exactly why a node ranked where it did.
+3. **Zero dependencies.** Standard library only, on both sides. It runs anywhere
+   Python 3.11 or a C++17 compiler runs.
+4. **Two engines, one truth.** The shared fixture keeps Python and C++ honest.
+5. **Reports are the product.** The scoring is a means; the investigation
+   document is what a human actually uses.
+
+See `DESIGN.md` and `ARCHITECTURE.md` for the deeper rationale.
+
+---
+
+## Repository layout
+
