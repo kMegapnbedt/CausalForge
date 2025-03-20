@@ -128,3 +128,19 @@ def build_parser() -> argparse.ArgumentParser:
 
     def add_common(p):
         p.add_argument("input", help="incident file (JSON, or compact with --events)")
+        p.add_argument("--events", action="store_true",
+                       help="treat input as the compact event stream format")
+        p.add_argument("-o", "--output", help="write to file instead of stdout")
+
+    p_analyze = sub.add_parser("analyze", help="rank likely root causes")
+    add_common(p_analyze)
+    p_analyze.add_argument("--format", choices=["markdown", "json"],
+                           default="markdown")
+    p_analyze.add_argument("--rounds", type=int, default=6)
+    p_analyze.add_argument("--half-life", dest="half_life", type=float, default=5.0)
+    p_analyze.add_argument("--damping", type=float, default=0.55)
+    p_analyze.add_argument("--radius-gain", dest="radius_gain", type=float, default=0.25)
+    p_analyze.set_defaults(func=_cmd_analyze)
+
+    p_timeline = sub.add_parser("timeline", help="print the incident timeline")
+    add_common(p_timeline)
