@@ -472,3 +472,31 @@ See `DESIGN.md` and `ARCHITECTURE.md` for the deeper rationale.
 
 ## Repository layout
 
+```
+causalforge/
+├── causalforge/            # Python package (reference implementation)
+│   ├── __init__.py         # public API + version
+│   ├── __main__.py         # python -m causalforge
+│   ├── cli.py              # argparse CLI (analyze/timeline/blast/convert/validate)
+│   ├── model.py            # Node / Edge / Incident / Suspect dataclasses
+│   ├── graph.py            # CausalGraph: adjacency, topo order, validation
+│   ├── ingest.py           # JSON and compact-stream parsers
+│   ├── rank.py             # scoring model: propagation + fusion + boost
+│   ├── blast.py            # blast-radius (count + coupling-weighted)
+│   ├── timeline.py         # timeline reconstruction + ASCII gantt
+│   └── report.py           # Markdown / JSON investigation renderers
+├── engine/
+│   └── causal_rank.cpp     # portable C++17 ranking core (mirror)
+├── examples/
+│   ├── incident_checkout.json     # canonical JSON incident fixture
+│   └── incident_checkout.events   # same incident, compact stream
+├── docs/
+│   ├── assets/             # animated SVG identity assets
+│   ├── schema.md           # incident schema reference
+│   ├── scoring.md          # scoring model reference
+│   └── cli.md              # command reference
+└── (root materials: LICENSE, CHANGELOG, ROADMAP, ...)
+```
+
+---
+
