@@ -500,3 +500,31 @@ causalforge/
 
 ---
 
+## Glossary
+
+- **Blame** — accumulated, backward-propagated suspicion originating at failing
+  sinks and decayed by time and coupling.
+- **Blast radius** — the set (or count) of downstream nodes a given node can
+  influence via directed edges.
+- **Causal graph** — the directed graph of execution events and their
+  dependency edges.
+- **Coupling** — `0..1` strength of causal influence along an edge.
+- **Damping** — per-hop attenuation applied during propagation to prevent
+  runaway amplification.
+- **Error weight** — direct, local evidence that a node misbehaved.
+- **Half-life** — the time gap at which the temporal kernel halves; controls how
+  quickly stale upstream events are discounted.
+- **Node / event** — one execution unit (service call, tool invocation, job).
+- **Primary suspect** — the top-ranked node; the tool's best single-cause
+  explanation.
+- **Sink** — a node with no outgoing edges (a leaf effect, e.g. the frontend).
+- **Source** — a node with no incoming edges (a potential ultimate cause).
+- **Suspect** — a ranked root-cause candidate with score, blame, radius and
+  rationale.
+- **Temporal kernel** — the exponential decay function over the causal time gap.
+
+---
+
+CausalForge is released under the Apache License 2.0. See `LICENSE`,
+`CONTRIBUTING.md`, and `SECURITY.md` for the details of contributing and
+reporting issues.
