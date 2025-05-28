@@ -95,3 +95,9 @@ class Incident:
 
 @dataclass
 class Suspect:
+    """A ranked root-cause candidate produced by the engine."""
+
+    node_id: str
+    score: float
+    blame: float
+    error_weight: float
