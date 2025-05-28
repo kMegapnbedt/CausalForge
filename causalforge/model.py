@@ -90,3 +90,8 @@ class Incident:
     summary: str = ""
 
     def node_index(self) -> Dict[str, Node]:
+        return {n.id: n for n in self.nodes}
+
+
+@dataclass
+class Suspect:
