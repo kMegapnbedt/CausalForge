@@ -206,3 +206,22 @@ bool parse(std::istream& in, CausalGraph& g, std::string& err) {
                 return false;
             }
             g.add_edge(e);
+        } else {
+            err = "unknown record kind at line " + std::to_string(lineno);
+            return false;
+        }
+    }
+    return true;
+}
+
+// Emit a ranked report to stdout. Deterministic ordering: score desc, then id.
+void report(const CausalGraph& g) {
+    std::vector<const Node*> ranked;
+    ranked.reserve(g.nodes.size());
+    for (const auto& n : g.nodes) ranked.push_back(&n);
+    std::sort(ranked.begin(), ranked.end(), [](const Node* a, const Node* b) {
+        if (std::abs(a->score - b->score) > 1e-9) return a->score > b->score;
+        return a->id < b->id;
+    });
+
+    std::cout << "CausalForge ranking report\n";
