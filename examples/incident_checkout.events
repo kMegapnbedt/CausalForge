@@ -11,3 +11,4 @@ N checkout.frontend  20.0  22.5  2  0.5
 E cache.warmer       vector.retriever   0.9
 E embedding.model    vector.retriever   0.7
 E vector.retriever   order.orchestrator 0.85
+E order.orchestrator payment.service    0.95
