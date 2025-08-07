@@ -225,3 +225,22 @@ void report(const CausalGraph& g) {
     });
 
     std::cout << "CausalForge ranking report\n";
+    std::cout << "nodes=" << g.nodes.size() << " edges=" << g.edges.size() << "\n";
+    std::cout << "----------------------------------------------------------\n";
+    std::cout << "rank  node                score    blame   errW  radius\n";
+    int rank = 1;
+    for (const Node* n : ranked) {
+        std::ostringstream row;
+        row << (rank < 10 ? " " : "") << rank << "   ";
+        std::string id = n->id;
+        if (id.size() < 18) id.append(18 - id.size(), ' ');
+        row << id << "  ";
+        char buf[128];
+        std::snprintf(buf, sizeof(buf), "%7.3f  %6.3f  %5.2f  %4d",
+                      n->score, n->blame, n->error_weight, n->reachable);
+        row << buf;
+        std::cout << row.str() << "\n";
+        ++rank;
+    }
+    if (!ranked.empty()) {
+        std::cout << "----------------------------------------------------------\n";
