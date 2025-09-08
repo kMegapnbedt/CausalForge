@@ -19,3 +19,5 @@
     { "src": "order.orchestrator", "dst": "payment.service",    "coupling": 0.95, "relation": "calls" },
     { "src": "order.orchestrator", "dst": "notification.queue", "coupling": 0.2,  "relation": "emits" },
     { "src": "payment.service",    "dst": "checkout.frontend",  "coupling": 0.9,  "relation": "returns" }
+  ]
+}
