@@ -244,3 +244,22 @@ void report(const CausalGraph& g) {
     }
     if (!ranked.empty()) {
         std::cout << "----------------------------------------------------------\n";
+        std::cout << "primary_suspect=" << ranked.front()->id
+                  << " score=" << ranked.front()->score << "\n";
+    }
+}
+
+}  // namespace causalforge
+
+int main(int argc, char** argv) {
+    using namespace causalforge;
+    CausalGraph g;
+    std::string err;
+
+    if (argc > 1) {
+        std::ifstream f(argv[1]);
+        if (!f) {
+            std::cerr << "causal_rank: cannot open " << argv[1] << "\n";
+            return 2;
+        }
+        if (!parse(f, g, err)) {
