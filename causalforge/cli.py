@@ -144,3 +144,19 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_timeline = sub.add_parser("timeline", help="print the incident timeline")
     add_common(p_timeline)
+    p_timeline.set_defaults(func=_cmd_timeline)
+
+    p_blast = sub.add_parser("blast", help="report blast radius of a node")
+    add_common(p_blast)
+    p_blast.add_argument("--node", required=True, help="node id to inspect")
+    p_blast.set_defaults(func=_cmd_blast)
+
+    p_convert = sub.add_parser("convert", help="convert between JSON and events")
+    add_common(p_convert)
+    p_convert.set_defaults(func=_cmd_convert)
+
+    p_validate = sub.add_parser("validate", help="structural validation")
+    add_common(p_validate)
+    p_validate.set_defaults(func=_cmd_validate)
+
+    return parser
