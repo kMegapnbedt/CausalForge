@@ -86,3 +86,11 @@ def parse_events(text: str) -> Incident:
                     t_start=float(ts),
                     t_end=float(te),
                     status=_STATUS_FROM_CODE.get(int(status_code), "ok"),
+                    error_weight=float(ew),
+                )
+            )
+        elif kind == "E":
+            if len(parts) != 4:
+                raise ValueError(f"malformed E record at line {lineno}")
+            _, src, dst, coupling = parts
+            edges.append(Edge(src=src, dst=dst, coupling=float(coupling)))
