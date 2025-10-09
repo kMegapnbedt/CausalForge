@@ -106,3 +106,12 @@ class CausalGraph:
                 if child in indeg:
                     indeg[child] -= 1
                     if indeg[child] == 0 and child not in seen:
+                        queue.append(child)
+            queue.sort()
+        for nid in sorted(self._nodes):
+            if nid not in seen:
+                order.append(nid)
+        return order
+
+    def edge_list(self) -> List[Tuple[str, str, float]]:
+        return [(e.src, e.dst, e.coupling) for e in self.incident.edges]
