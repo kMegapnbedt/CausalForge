@@ -36,3 +36,6 @@ __all__ = [
     "RankConfig",
     "blast_radius",
     "reachable_set",
+    "build_timeline",
+    "TimelineEntry",
+    "render_markdown",
