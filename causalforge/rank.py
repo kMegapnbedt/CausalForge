@@ -100,3 +100,15 @@ def _rationale(node, blame: float, radius: int) -> List[str]:
         reasons.append(f"local error evidence ({node.error_weight:.2f})")
     if blame >= 0.75:
         reasons.append("high propagated blame from downstream failures")
+    elif blame >= 0.3:
+        reasons.append("moderate propagated blame from downstream failures")
+    if radius >= 3:
+        reasons.append(f"broad blast radius ({radius} downstream nodes)")
+    elif radius > 0:
+        reasons.append(f"blast radius of {radius} downstream node(s)")
+    if not reasons:
+        reasons.append("no direct evidence; included for completeness")
+    return reasons
+
+
+def rank_incident(graph: CausalGraph, cfg: RankConfig | None = None) -> List[Suspect]:
