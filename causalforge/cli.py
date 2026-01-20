@@ -160,3 +160,20 @@ def build_parser() -> argparse.ArgumentParser:
     p_validate.set_defaults(func=_cmd_validate)
 
     return parser
+
+
+def main(argv: Optional[List[str]] = None) -> int:
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    if getattr(args, "version", False):
+        from . import __version__
+        print(f"causalforge {__version__}")
+        return 0
+    if not getattr(args, "command", None):
+        parser.print_help()
+        return 0
+    return args.func(args)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
