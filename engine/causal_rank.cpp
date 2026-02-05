@@ -263,3 +263,22 @@ int main(int argc, char** argv) {
             return 2;
         }
         if (!parse(f, g, err)) {
+            std::cerr << "causal_rank: " << err << "\n";
+            return 3;
+        }
+    } else {
+        if (!parse(std::cin, g, err)) {
+            std::cerr << "causal_rank: " << err << "\n";
+            return 3;
+        }
+    }
+
+    if (g.nodes.empty()) {
+        std::cerr << "causal_rank: no nodes parsed\n";
+        return 4;
+    }
+
+    rank(g);
+    report(g);
+    return 0;
+}
