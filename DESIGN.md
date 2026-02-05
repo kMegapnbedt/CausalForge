@@ -8,3 +8,4 @@ CausalForge makes builds temporal dependency graphs that connect execution error
 2. **Portable artifacts** — JSON and Markdown reports travel cleanly through pull requests and release notes.
 3. **Compositional analysis** — parsers, domain models, metrics and renderers can evolve independently.
 4. **Useful defaults** — bundled fixtures demonstrate realistic workflows without configuration overhead.
+
