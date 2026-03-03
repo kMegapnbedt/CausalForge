@@ -112,3 +112,14 @@ def _rationale(node, blame: float, radius: int) -> List[str]:
 
 
 def rank_incident(graph: CausalGraph, cfg: RankConfig | None = None) -> List[Suspect]:
+    """Return suspects ordered from most to least likely root cause."""
+    cfg = cfg or RankConfig()
+    cfg.validate()
+
+    blame = _propagate(graph, cfg)
+    suspects: List[Suspect] = []
+    for node in graph.nodes():
+        radius = blast_radius(graph, node.id)
+        radius_factor = 1.0 + math.log1p(radius) * cfg.radius_gain
+        fused = (blame.get(node.id, 0.0) + node.error_weight) * radius_factor
+        suspects.append(
