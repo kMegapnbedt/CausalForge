@@ -94,3 +94,11 @@ def parse_events(text: str) -> Incident:
                 raise ValueError(f"malformed E record at line {lineno}")
             _, src, dst, coupling = parts
             edges.append(Edge(src=src, dst=dst, coupling=float(coupling)))
+        else:
+            raise ValueError(f"unknown record kind '{kind}' at line {lineno}")
+    return Incident(id="stream", title="Streamed incident", nodes=nodes, edges=edges)
+
+
+def to_events(incident: Incident) -> str:
+    """Serialise an incident back into the compact line format."""
+    code = {"ok": 0, "degraded": 1, "failed": 2}
