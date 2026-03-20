@@ -11,3 +11,4 @@ native:
 demo:
 	python -m causalforge --help
 
+clean:
