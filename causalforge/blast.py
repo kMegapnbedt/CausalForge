@@ -57,3 +57,9 @@ def weighted_blast(graph: CausalGraph, start: str) -> float:
     while stack:
         cur = stack.pop()
         base = best.get(cur, 0.0)
+        for edge in graph.out_edges(cur):
+            propagated = base * max(0.0, min(1.0, edge.coupling))
+            if propagated > best.get(edge.dst, 0.0) + 1e-9:
+                best[edge.dst] = propagated
+                stack.append(edge.dst)
+    return sum(v for k, v in best.items() if k != start)
