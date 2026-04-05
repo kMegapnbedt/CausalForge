@@ -12,3 +12,4 @@ demo:
 	python -m causalforge --help
 
 clean:
+	@echo Cleaning generated report artifacts
