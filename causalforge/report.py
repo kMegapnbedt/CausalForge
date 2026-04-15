@@ -87,3 +87,10 @@ def render_markdown(incident: Incident, graph: CausalGraph,
     lines.append("## Timeline")
     lines.append("")
     lines.append("```")
+    lines.append(timeline_text(build_timeline(graph)))
+    lines.append("```")
+    lines.append("")
+
+    warnings = graph.validate()
+    if warnings:
+        lines.append("## Structural notes")
