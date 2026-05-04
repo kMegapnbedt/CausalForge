@@ -10,3 +10,4 @@ Contributions are most effective when they begin with a small fixture that demon
 
 ## Review focus
 Reviewers look for clear domain modeling, deterministic calculations, useful diagnostics and examples that reflect proposed behavior.
+
