@@ -101,3 +101,9 @@ class Suspect:
     score: float
     blame: float
     error_weight: float
+    blast_radius: int
+    rationale: List[str] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, object]:
+        return {
+            "node_id": self.node_id,
