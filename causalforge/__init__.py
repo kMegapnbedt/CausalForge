@@ -39,3 +39,6 @@ __all__ = [
     "build_timeline",
     "TimelineEntry",
     "render_markdown",
+    "render_json",
+    "load_incident",
+    "parse_events",
