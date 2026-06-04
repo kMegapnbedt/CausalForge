@@ -102,3 +102,12 @@ def parse_events(text: str) -> Incident:
 def to_events(incident: Incident) -> str:
     """Serialise an incident back into the compact line format."""
     code = {"ok": 0, "degraded": 1, "failed": 2}
+    lines = ["# CausalForge compact event stream"]
+    for n in incident.nodes:
+        lines.append(
+            f"N {n.id} {n.t_start:g} {n.t_end:g} "
+            f"{code.get(n.status, 0)} {n.error_weight:g}"
+        )
+    for e in incident.edges:
+        lines.append(f"E {e.src} {e.dst} {e.coupling:g}")
+    return "\n".join(lines) + "\n"
