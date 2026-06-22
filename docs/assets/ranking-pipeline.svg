@@ -79,3 +79,8 @@
     <circle cx="777" cy="185" r="1.6">
       <animate attributeName="cy" values="185;208" dur="1.35s" begin="0.7s" repeatCount="indefinite"/>
       <animate attributeName="opacity" values="1;0" dur="1.35s" begin="0.7s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <text x="60" y="245" font-family="Consolas,Menlo,monospace" font-size="12" fill="#5b6068">python -m causalforge analyze incident.json --format markdown</text>
+</svg>
