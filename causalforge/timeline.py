@@ -64,3 +64,7 @@ def timeline_text(entries: List[TimelineEntry]) -> str:
     for e in entries:
         marker = {"failed": "X", "degraded": "!", "ok": " "}.get(e.status, " ")
         lines.append(
+            f"{e.node_id.ljust(width)} [{marker}] "
+            f"{e.t_start:6.2f}-{e.t_end:6.2f}s |{e.lane}"
+        )
+    return "\n".join(lines)
