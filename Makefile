@@ -13,3 +13,4 @@ demo:
 
 clean:
 	@echo Cleaning generated report artifacts
+
