@@ -9,3 +9,4 @@ CausalForge makes builds temporal dependency graphs that connect execution error
 3. **Compositional analysis** — parsers, domain models, metrics and renderers can evolve independently.
 4. **Useful defaults** — bundled fixtures demonstrate realistic workflows without configuration overhead.
 
+## Extension seams
