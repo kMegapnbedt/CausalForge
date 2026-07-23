@@ -107,3 +107,9 @@ class Suspect:
     def to_dict(self) -> Dict[str, object]:
         return {
             "node_id": self.node_id,
+            "score": round(self.score, 4),
+            "blame": round(self.blame, 4),
+            "error_weight": round(self.error_weight, 4),
+            "blast_radius": self.blast_radius,
+            "rationale": list(self.rationale),
+        }
