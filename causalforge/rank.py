@@ -123,3 +123,15 @@ def rank_incident(graph: CausalGraph, cfg: RankConfig | None = None) -> List[Sus
         radius_factor = 1.0 + math.log1p(radius) * cfg.radius_gain
         fused = (blame.get(node.id, 0.0) + node.error_weight) * radius_factor
         suspects.append(
+            Suspect(
+                node_id=node.id,
+                score=fused,
+                blame=blame.get(node.id, 0.0),
+                error_weight=node.error_weight,
+                blast_radius=radius,
+                rationale=_rationale(node, blame.get(node.id, 0.0), radius),
+            )
+        )
+
+    suspects.sort(key=lambda s: (-s.score, s.node_id))
+    return suspects
