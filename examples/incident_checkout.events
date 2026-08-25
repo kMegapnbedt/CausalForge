@@ -12,3 +12,5 @@ E cache.warmer       vector.retriever   0.9
 E embedding.model    vector.retriever   0.7
 E vector.retriever   order.orchestrator 0.85
 E order.orchestrator payment.service    0.95
+E order.orchestrator notification.queue 0.2
+E payment.service    checkout.frontend  0.9
