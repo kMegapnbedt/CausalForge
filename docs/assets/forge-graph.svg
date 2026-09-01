@@ -92,3 +92,10 @@
     <circle cx="160" cy="150" r="1.5">
       <animate attributeName="cy" values="150;110" dur="2.2s" begin="0.4s" repeatCount="indefinite"/>
       <animate attributeName="opacity" values="1;0" dur="2.2s" begin="0.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="142" cy="150" r="1.5">
+      <animate attributeName="cy" values="150;118" dur="2.0s" begin="0.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0" dur="2.0s" begin="0.9s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>
