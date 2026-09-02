@@ -10,3 +10,4 @@ CausalForge makes builds temporal dependency graphs that connect execution error
 4. **Useful defaults** — bundled fixtures demonstrate realistic workflows without configuration overhead.
 
 ## Extension seams
+New record adapters belong at the ingestion boundary, new metrics attach to the analysis summary, and new renderers consume the existing report model. This keeps integrations focused and avoids cross-cutting rewrites.
