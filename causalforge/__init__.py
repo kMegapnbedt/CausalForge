@@ -42,3 +42,6 @@ __all__ = [
     "render_json",
     "load_incident",
     "parse_events",
+]
+
+__version__ = "0.5.0"
