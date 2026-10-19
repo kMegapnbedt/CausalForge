@@ -43,7 +43,14 @@ def _cmd_analyze(args) -> int:
         damping=args.damping,
         radius_gain=args.radius_gain,
     )
-    suspects = rank_incident(graph, cfg)
+    if getattr(args, "progress", False):
+        from tqdm.auto import tqdm
+        bar = tqdm(total=1, desc="ranking")
+        suspects = rank_incident(graph, cfg)
+        bar.update(1)
+        bar.close()
+    else:
+        suspects = rank_incident(graph, cfg)
     if args.format == "json":
         out = render_json(incident, graph, suspects)
     else:
@@ -140,6 +147,8 @@ def build_parser() -> argparse.ArgumentParser:
     p_analyze.add_argument("--half-life", dest="half_life", type=float, default=5.0)
     p_analyze.add_argument("--damping", type=float, default=0.55)
     p_analyze.add_argument("--radius-gain", dest="radius_gain", type=float, default=0.25)
+    p_analyze.add_argument("--progress", action="store_true",
+                           help="show a progress bar while ranking (requires tqdm)")
     p_analyze.set_defaults(func=_cmd_analyze)
 
     p_timeline = sub.add_parser("timeline", help="print the incident timeline")
