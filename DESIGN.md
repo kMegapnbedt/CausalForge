@@ -16,6 +16,10 @@ the `.events` fixture is the contract both sides are checked against. The core
 is built manually (see the README recipe) rather than shipped as a Python
 extension.
 
+## Development tooling
+Runtime stays standard-library-only; the test runner and any lint pass
+live in `requirements-dev.txt` and are pinned on purpose.
+
 ## Extension seams
 New record adapters belong at the ingestion boundary, new metrics attach to the analysis summary, and new renderers consume the existing report model. This keeps integrations focused and avoids cross-cutting rewrites.
 

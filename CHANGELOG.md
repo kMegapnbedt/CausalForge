@@ -4,6 +4,8 @@ All notable changes to CausalForge are documented here.
 
 ## Unreleased
 - Pinned the dev test runner in `requirements-dev.txt`; dependabot now watches it.
+- Recorded the dev-tooling pin and the dependency update path in the
+  contributing guide.
 
 ## 0.1.0 — Foundation
 - Introduced the core AI Failure Causality Explorer workflow.
