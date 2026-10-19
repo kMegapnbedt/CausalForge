@@ -62,8 +62,8 @@ Concretely, CausalForge gives you:
   candidate could explain.
 - A **reconstructed timeline** with an ASCII gantt strip.
 - **Markdown and JSON investigation exports** for humans and automation.
-- A Python reference implementation plus a portable C++ core that mirrors the
-  scoring math for embedders, with the `.events` fixture as the shared contract.
+- Two interchangeable engines (Python and C++) that produce identical rankings,
+  so you can embed the fast path wherever you need it.
 
 ---
 
@@ -319,6 +319,14 @@ grammar the C++ core parses, and the Python package can read it with
 `examples/incident_checkout.events` is the same incident as the JSON fixture,
 which is why both engines agree.
 
+### Metadata
+
+The v1 stream is events-only: it carries no header, so a JSON incident that
+travels through `convert` and back comes home as *Streamed incident* with the
+id `stream`. Keep the original JSON if the id, title, origin timestamp or
+summary matter; a `H <id> <title>` header line is the planned extension and
+parsers must keep ignoring unknown lines until then.
+
 ---
 
 ## CLI reference and recipes
@@ -372,16 +380,6 @@ python -m causalforge validate incident.json || exit 1
 out-of-range couplings, so it drops cleanly into a pre-merge check.
 
 ---
-
-## Exit codes
-
-| Code | Meaning |
-| ---: | --- |
-| 0 | success; `validate` found no structural warnings |
-| 1 | `validate` reported warnings, or `blast` was given an unknown node |
-| 2 | usage error (bad flags, unreadable file) |
-
-Pipelines can rely on `validate` returning 1 for a warned graph.
 
 ## The C++ ranking core
 
